@@ -1,5 +1,6 @@
 package de.anna.springboot.controller;
 
+import de.anna.springboot.service.PersonService;
 import de.anna.springboot.webantwort.PersonListServiceAntwort;
 import de.anna.springboot.webantwort.PersonServiceAntwort;
 import de.anna.springboot.model.dto.PersonDTO;
@@ -14,14 +15,14 @@ import java.util.List;
 public class PersonWSController {
 
     @Autowired
-  //  private PersonService personService;
+    private PersonService personService;
 
 
     @PostMapping("/addperson")
     public PersonServiceAntwort addPersonen(@RequestBody PersonDTO personDTO) {
 
         try {
-     //       personService.save(personDTO);
+            personService.save(personDTO);
 
         } catch (Exception exception) {
             return new PersonServiceAntwort(false, exception.getMessage());
@@ -36,7 +37,7 @@ public class PersonWSController {
 
         List<PersonDTO> personDTOList = new ArrayList<>();
         try {
-     //       personDTOList = personService.findAll();
+            personDTOList = personService.findAll();
 
         } catch (Exception exception) {
             return new PersonListServiceAntwort(personDTOList, false, exception.getMessage());
