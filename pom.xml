@@ -11,7 +11,7 @@
     <groupId>de.anna.springboot</groupId>
     <artifactId>restservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>restserviceVonPerson</name>
+    <name>restserviceVonKunde</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

@@ -1,9 +1,12 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<h1>Add new Person</h1>
+<h1>Edit Kunde</h1>
 
-<form:form method="post" modelAttribute="personForm" action="/person/personweiterleiten">
+<form:form modelAttribute="kundeForm" action="/kunde/kundeweiterleitenedit">
     <table >
+        <tr>
+            <td><form:hidden  path="id" /></td>
+        </tr>
         <tr>
             <td>Name : </td>
             <td><form:input path="name"  /></td>
@@ -14,7 +17,7 @@
         </tr>
         <tr>
             <td> </td>
-            <td><input type="submit" value="Save" /></td>
+            <td><input type="submit" value="Update" /></td>
         </tr>
     </table>
 </form:form>

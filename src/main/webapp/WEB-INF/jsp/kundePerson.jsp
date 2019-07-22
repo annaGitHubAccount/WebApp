@@ -1,23 +1,20 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<h1>Wollen Sie wirklich die Daten von der Person speichern?</h1>
+<h1>Wollen Sie wirklich die Daten von dem Kunden speichert?</h1>
 
-<form:form method="post" modelAttribute="personForm" action="/person/saveperson">
+<form:form method="post" modelAttribute="kundeForm" action="/kunde/listevonkunden">
     <table >
         <tr>
             <td>Name : </td>
-            <td>${personForm.name}</td>
+            <td><form:input path="name"  /></td>
         </tr>
         <tr>
             <td>Nachname :</td>
-            <td>${personForm.nachname}</td>
+            <td><form:input path="nachname" /></td>
         </tr>
         <tr>
             <td> </td>
             <td><input type="submit" value="Save" /></td>
         </tr>
     </table>
-
-    <form:hidden path="name"/>
-    <form:hidden path="nachname"/>
 </form:form>

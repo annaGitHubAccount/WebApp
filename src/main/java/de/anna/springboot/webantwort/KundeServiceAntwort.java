@@ -1,17 +1,17 @@
 package de.anna.springboot.webantwort;
 
-public class PersonServiceAntwort {
+public class KundeServiceAntwort {
 
     private boolean isOk;
 
     private String error;
 
-    public PersonServiceAntwort(boolean isOk, String error) {
+    public KundeServiceAntwort(boolean isOk, String error) {
         this.isOk = isOk;
         this.error = error;
     }
 
-    public PersonServiceAntwort() {
+    public KundeServiceAntwort() {
     }
 
     public boolean isOk() {

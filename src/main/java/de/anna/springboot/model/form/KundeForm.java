@@ -1,6 +1,6 @@
 package de.anna.springboot.model.form;
 
-public class PersonForm {
+public class KundeForm {
 
     private Long id;
     private String name;

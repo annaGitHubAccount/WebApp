@@ -1,7 +1,16 @@
-package de.anna.springboot.model.dto;
+package de.anna.springboot.model.entity;
 
-public class PersonDTO {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+public class Kunde {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -10,12 +19,12 @@ public class PersonDTO {
 
 
 
-    public PersonDTO(String name, String nachname) {
-        this.name = name;
-        this.nachname = nachname;
+    public Kunde() {
     }
 
-    public PersonDTO() {
+    public Kunde(String name, String nachname) {
+        this.name = name;
+        this.nachname = nachname;
     }
 
     public Long getId() {
