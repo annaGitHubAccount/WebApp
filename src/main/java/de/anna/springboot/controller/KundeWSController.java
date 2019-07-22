@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(produces = "application/json")
+@RequestMapping(produces = "application/json", value = "/ws")
 public class KundeWSController {
 
     @Autowired
@@ -45,4 +45,36 @@ public class KundeWSController {
 
         return new KundeListServiceAntwort(kundeDTOList, true, "");
     }
+
+
+    @PostMapping("/savekunde")
+    public KundeServiceAntwort saveKunde(@RequestBody KundeDTO kundeDTO) {
+
+        try {
+            kundeService.save(kundeDTO);
+
+        } catch (Exception exception) {
+            return new KundeServiceAntwort(false, exception.getMessage());
+        }
+
+        return new KundeServiceAntwort(true, "");
+    }
+
+
+    @GetMapping("/deletekunde/{id}")
+    public KundeServiceAntwort deleteKunde(@PathVariable Long id) {
+
+        try {
+            kundeService.deleteKundeById(id);
+
+        } catch (Exception exception) {
+            return new KundeServiceAntwort(false, exception.getMessage());
+        }
+
+        return new KundeServiceAntwort(true, "");
+    }
+
+
+
+
 }

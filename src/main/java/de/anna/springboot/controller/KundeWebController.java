@@ -13,7 +13,7 @@ import java.util.List;
 // jede Methode muss immer alle Daten, die ich zeigen möchte, enthalten
 
 @Controller
-@RequestMapping("/kunde")
+@RequestMapping("/web")
 public class KundeWebController {
 
 
@@ -82,7 +82,7 @@ public class KundeWebController {
     }
 
 
-    @GetMapping("deletekunde/{id}")
+    @GetMapping("/deletekunde/{id}")
     public String deleteKunde(@PathVariable Long id, Model model){
 
         kundeService.deleteKundeById(id);
