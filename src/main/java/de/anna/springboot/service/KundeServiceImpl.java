@@ -7,6 +7,7 @@ import de.anna.springboot.repository.KundeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +29,6 @@ public class KundeServiceImpl implements KundeService {
     }
 
     @Override
-    @Transactional
     public List<KundeDTO> findAll() {
 
         List<KundeDTO> kundeDTOList = new ArrayList<>();
@@ -51,7 +51,7 @@ public class KundeServiceImpl implements KundeService {
         Optional<Kunde> kundeByID = kundeRepository.findById(id);
 
         KundeDTO kundeDTO = new KundeDTO();
-        if(kundeByID.isPresent()) {
+        if (kundeByID.isPresent()) {
             kundeDTO = kundeAssembler.mapKundeToKundeDTO(kundeByID.get());
         }
 
@@ -64,9 +64,23 @@ public class KundeServiceImpl implements KundeService {
 
         Optional<Kunde> kundeById = kundeRepository.findById(id);
 
-        if(kundeById.isPresent()){
+        if (kundeById.isPresent()) {
             kundeRepository.delete(kundeById.get());
         }
+    }
+
+    @Override
+    public List<KundeDTO> findKundenByNachname(String nachname) {
+
+        List<KundeDTO> kundeDTOList = new ArrayList<>();
+        List<Kunde> kundenByNachname = kundeRepository.findKundenByNachname(nachname);
+
+        for (Kunde kunde : kundenByNachname) {
+            KundeDTO kundeDTO = kundeAssembler.mapKundeToKundeDTO(kunde);
+            kundeDTOList.add(kundeDTO);
+        }
+
+        return kundeDTOList;
     }
 
 

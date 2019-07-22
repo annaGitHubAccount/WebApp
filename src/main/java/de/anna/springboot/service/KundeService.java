@@ -14,4 +14,6 @@ public interface KundeService {
 
     void deleteKundeById(Long id);
 
+    List<KundeDTO> findKundenByNachname(String nachname);
+
 }

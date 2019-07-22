@@ -75,6 +75,36 @@ public class KundeWSController {
     }
 
 
+    // nieladnie, ale dla cwiczenia....
+    @PostMapping("/savekundenachname/{id}/{nachname}")
+    public KundeServiceAntwort saveKundeNachname(@PathVariable Long id, @PathVariable String nachname) {
 
+        try {
+
+            KundeDTO kundeById = kundeService.findKundeById(id);
+            kundeById.setNachname(nachname);
+            kundeService.save(kundeById);
+
+        } catch (Exception exception) {
+            return new KundeServiceAntwort(false, exception.getMessage());
+        }
+
+        return new KundeServiceAntwort(true, "");
+    }
+
+
+    @GetMapping("/findkundenbynachnamen/{nachname}")
+    public KundeListServiceAntwort findKundenByNachnamen(@PathVariable String nachname) {
+
+        List<KundeDTO> kundeDTOList = new ArrayList<>();
+        try {
+            kundeDTOList = kundeService.findKundenByNachname(nachname);
+
+        } catch (Exception exception) {
+            return new KundeListServiceAntwort(kundeDTOList, false, exception.getMessage());
+        }
+
+        return new KundeListServiceAntwort(kundeDTOList, true, "");
+    }
 
 }
