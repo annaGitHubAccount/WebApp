@@ -13,18 +13,14 @@ public class Kunde {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String steuerId;
+
     private String name;
 
     private String nachname;
 
 
-
     public Kunde() {
-    }
-
-    public Kunde(String name, String nachname) {
-        this.name = name;
-        this.nachname = nachname;
     }
 
     public Long getId() {
@@ -49,5 +45,13 @@ public class Kunde {
 
     public void setNachname(String nachname) {
         this.nachname = nachname;
+    }
+
+    public String getSteuerId() {
+        return steuerId;
+    }
+
+    public void setSteuerId(String steuerId) {
+        this.steuerId = steuerId;
     }
 }

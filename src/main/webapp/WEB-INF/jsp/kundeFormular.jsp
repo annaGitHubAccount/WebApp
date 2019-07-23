@@ -2,8 +2,12 @@
 
 <h1>Add new Kunde</h1>
 
-<form:form method="post" modelAttribute="kundeForm" action="/kunde/kundeweiterleiten">
+<form:form method="post" modelAttribute="kundeForm" action="/web/kundeweiterleiten">
     <table >
+        <tr>
+            <td>Steuer ID : </td>
+            <td><form:input path="steuerId"  /></td>
+        </tr>
         <tr>
             <td>Name : </td>
             <td><form:input path="name"  /></td>

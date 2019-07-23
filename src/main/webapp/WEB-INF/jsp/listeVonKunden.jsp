@@ -16,11 +16,12 @@
     <table >
         <c:forEach var="kunde" items="${kundeList}">
             <tr>
+                <td>${kunde.steuerId}</td>
                 <td>${kunde.name}</td>
                 <td>${kunde.nachname}</td>
 
-                <td><a href="/kunde/editkunde/${kunde.id}">Edit</a></td>
-                <td><a href="/kunde/deletekunde/${kunde.id}">Delete</a></td>
+                <td><a href="/web/editkunde/${kunde.id}">Edit</a></td>
+                <td><a href="/web/deletekunde/${kunde.id}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>

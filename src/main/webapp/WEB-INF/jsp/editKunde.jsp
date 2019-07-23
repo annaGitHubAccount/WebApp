@@ -2,10 +2,14 @@
 
 <h1>Edit Kunde</h1>
 
-<form:form modelAttribute="kundeForm" action="/kunde/kundeweiterleitenedit">
+<form:form modelAttribute="kundeForm" action="/web/kundeweiterleitenedit">
     <table >
         <tr>
             <td><form:hidden  path="id" /></td>
+        </tr>
+        <tr>
+            <td>Steuer ID : </td>
+            <td><form:input path="steuerId"  /></td>
         </tr>
         <tr>
             <td>Name : </td>

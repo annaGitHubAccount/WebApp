@@ -3,6 +3,7 @@ package de.anna.springboot.model.form;
 public class KundeForm {
 
     private Long id;
+    private String steuerId;
     private String name;
     private String nachname;
 
@@ -28,5 +29,13 @@ public class KundeForm {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getSteuerId() {
+        return steuerId;
+    }
+
+    public void setSteuerId(String steuerId) {
+        this.steuerId = steuerId;
     }
 }

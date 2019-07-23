@@ -11,6 +11,7 @@ public class KundeAssembler {
         KundeDTO kundeDTO = new KundeDTO();
 
         kundeDTO.setId(kunde.getId());
+        kundeDTO.setSteuerId(kunde.getSteuerId());
         kundeDTO.setName(kunde.getName());
         kundeDTO.setNachname(kunde.getNachname());
 
@@ -23,6 +24,7 @@ public class KundeAssembler {
         Kunde kunde = new Kunde();
 
         kunde.setId(kundeDTO.getId());
+        kunde.setSteuerId(kundeDTO.getSteuerId());
         kunde.setName(kundeDTO.getName());
         kunde.setNachname(kundeDTO.getNachname());
 
@@ -36,6 +38,7 @@ public class KundeAssembler {
         KundeDTO kundeDTO = new KundeDTO();
 
         kundeDTO.setId(kundeForm.getId());
+        kundeDTO.setSteuerId(kundeForm.getSteuerId());
         kundeDTO.setName(kundeForm.getName());
         kundeDTO.setNachname(kundeForm.getNachname());
 
@@ -47,6 +50,7 @@ public class KundeAssembler {
         KundeForm kundeForm = new KundeForm();
 
         kundeForm.setId(kundeDTO.getId());
+        kundeForm.setSteuerId(kundeDTO.getSteuerId());
         kundeForm.setName(kundeDTO.getName());
         kundeForm.setNachname(kundeDTO.getNachname());
 

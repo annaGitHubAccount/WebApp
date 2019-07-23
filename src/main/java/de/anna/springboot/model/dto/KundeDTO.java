@@ -4,6 +4,8 @@ public class KundeDTO {
 
     private Long id;
 
+    private String steuerId;
+
     private String name;
 
     private String nachname;
@@ -14,6 +16,14 @@ public class KundeDTO {
         this.name = name;
         this.nachname = nachname;
     }
+
+    public KundeDTO(String steuerId, String name, String nachname) {
+        this.steuerId = steuerId;
+        this.name = name;
+        this.nachname = nachname;
+    }
+
+
 
     public KundeDTO() {
     }
@@ -40,5 +50,13 @@ public class KundeDTO {
 
     public void setNachname(String nachname) {
         this.nachname = nachname;
+    }
+
+    public String getSteuerId() {
+        return steuerId;
+    }
+
+    public void setSteuerId(String steuerId) {
+        this.steuerId = steuerId;
     }
 }

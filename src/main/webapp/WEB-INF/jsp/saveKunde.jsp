@@ -2,8 +2,12 @@
 
 <h1>Wollen Sie wirklich die Daten von dem Kunden speichert?</h1>
 
-<form:form method="post" modelAttribute="kundeForm" action="/kunde/listevonkunden">
+<form:form method="post" modelAttribute="kundeForm" action="/web/listevonkunden">
     <table >
+        <tr>
+            <td>Steuer ID : </td>
+            <td><form:input path="steuerId"  /></td>
+        </tr>
         <tr>
             <td>Name : </td>
             <td><form:input path="name"  /></td>
