@@ -7,10 +7,12 @@ import de.anna.springboot.service.KundeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 import java.util.List;
 
-// jede Methode muss immer alle Daten, die ich zeigen möchte, enthalten
+// jede Methode muss immer alle Daten, die ich zeigen möchte, enthalten !!!! Daten leiter ich in Model weiter!!!
 
 @Controller
 @RequestMapping("/web")
@@ -23,7 +25,14 @@ public class KundeWebController {
     KundeAssembler kundeAssembler = new KundeAssembler();
 
 
-    @RequestMapping("/kundeformular")
+    @GetMapping({"/", "/homepage"})
+    public String homePage(){
+
+        return "homePage";
+    }
+
+
+    @GetMapping("/kundeformular")
     public String kundeFormularZeigen(Model model){
 
         model.addAttribute("kundeForm", new KundeForm());
@@ -33,10 +42,16 @@ public class KundeWebController {
 
 
     @PostMapping("/kundeweiterleiten")
-    public String kundeWeiterleiten(Model model, @ModelAttribute("kundeForm") KundeForm kundeForm){
+    public String kundeWeiterleiten(Model model, @Valid @ModelAttribute("kundeForm") KundeForm kundeForm, BindingResult resultOfValidation){
 
-        model.addAttribute("kundeForm", kundeForm);
-        return "kundeWeiterleiten";
+        if(resultOfValidation.hasErrors()) {
+            model.addAttribute("kundeForm", kundeForm);
+            return "kundeFormular";
+
+        }else {
+            model.addAttribute("kundeForm", kundeForm);
+            return "kundeWeiterleiten";
+        }
     }
 
 
@@ -67,7 +82,10 @@ public class KundeWebController {
     public String editKunde(@PathVariable Long id, Model model){
 
         KundeDTO kundeDTOById = kundeService.findKundeById(id);
-        model.addAttribute("kundeForm", kundeDTOById);
+
+        KundeForm kundeForm = kundeAssembler.mapKundeDTOToKundeForm(kundeDTOById);
+
+        model.addAttribute("kundeForm", kundeForm);
 
         return "editKunde";
     }

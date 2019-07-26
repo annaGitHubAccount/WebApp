@@ -20,6 +20,10 @@
             <td><form:input path="nachname" /></td>
         </tr>
         <tr>
+            <td>Date of Birth :</td>
+            <td><form:input path="birthDate" id="datepickereditkunde" /></td>
+        </tr>
+        <tr>
             <td> </td>
             <td><input type="submit" value="Update" /></td>
         </tr>

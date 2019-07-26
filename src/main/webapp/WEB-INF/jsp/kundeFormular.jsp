@@ -1,24 +1,54 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <h1>Add new Kunde</h1>
 
+<style>
+    .error{color:red}
+</style>
+
 <form:form method="post" modelAttribute="kundeForm" action="/web/kundeweiterleiten">
-    <table >
+    <table>
+
         <tr>
-            <td>Steuer ID : </td>
-            <td><form:input path="steuerId"  /></td>
+            <td>Steuer ID :</td>
+            <td>
+                <div class="ui input"><form:input path="steuerId" /></div>
+            </td>
+            <td>
+                <form:errors path="steuerId" cssClass="error" />
+            </td>
         </tr>
         <tr>
-            <td>Name : </td>
-            <td><form:input path="name"  /></td>
+            <td>Name :</td>
+            <td>
+                <div class="ui input"><form:input path="name" /></div>
+            </td>
+            <td>
+                <form:errors path="name" cssClass="error" />
+            </td>
         </tr>
         <tr>
             <td>Nachname :</td>
-            <td><form:input path="nachname" /></td>
+            <td>
+                <div class="ui input"><form:input path="nachname"/></div>
+            </td>
+            <td>
+                <form:errors path="nachname" cssClass="error" />
+            </td>
         </tr>
         <tr>
-            <td> </td>
-            <td><input type="submit" value="Save" /></td>
+            <td>Date of Birth :</td>
+            <td>
+                <div class="ui input"><form:input path="birthDate" id="datepickerkundeformular" /></div>
+            </td>
+            <td>
+                <form:errors path="birthDate" cssClass="error" />
+            </td>
         </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Save" class="ui button"/></td>
+        </tr>
+
     </table>
 </form:form>

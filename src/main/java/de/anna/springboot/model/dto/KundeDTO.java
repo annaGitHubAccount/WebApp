@@ -1,5 +1,7 @@
 package de.anna.springboot.model.dto;
 
+import java.time.LocalDate;
+
 public class KundeDTO {
 
     private Long id;
@@ -10,6 +12,7 @@ public class KundeDTO {
 
     private String nachname;
 
+    private LocalDate birthDate;
 
 
     public KundeDTO(String name, String nachname) {
@@ -58,5 +61,13 @@ public class KundeDTO {
 
     public void setSteuerId(String steuerId) {
         this.steuerId = steuerId;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 }

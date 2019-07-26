@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 public class Kunde {
@@ -18,6 +19,8 @@ public class Kunde {
     private String name;
 
     private String nachname;
+
+    private LocalDate birthDate;
 
 
     public Kunde() {
@@ -53,5 +56,13 @@ public class Kunde {
 
     public void setSteuerId(String steuerId) {
         this.steuerId = steuerId;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 }

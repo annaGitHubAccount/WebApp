@@ -1,9 +1,3 @@
-
-CREATE SEQUENCE kunde_seq
-    MAXVALUE 99999999999999
-    START WITH 100
-    INCREMENT BY 1;
-
-insert into Kunde(id, steuer_id, name, nachname) VALUES (1, '3456', 'Mariusz', 'Pudzian');
-insert into Kunde(id, steuer_id, name, nachname) VALUES (2, '4678', 'Kora', 'Jackowska');
-insert into Kunde(id, steuer_id, name, nachname) VALUES (3, '2567', 'Maja', 'Morowska');
+insert into Kunde(id, steuer_id, name, nachname, birth_date) VALUES (1, '345676548', 'Mariusz', 'Pudzian', parsedatetime('17.09.2012', 'dd.MM.yyyy'));
+insert into Kunde(id, steuer_id, name, nachname, birth_date) VALUES (2, '467887549', 'Kora', 'Jackowska', parsedatetime('06.11.2000', 'dd.MM.yyyy'));
+insert into Kunde(id, steuer_id, name, nachname, birth_date) VALUES (3, '256787543', 'Maja', 'Morowska', parsedatetime('02.06.2006', 'dd.MM.yyyy'));
