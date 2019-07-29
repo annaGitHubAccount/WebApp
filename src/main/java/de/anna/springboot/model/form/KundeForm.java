@@ -24,6 +24,8 @@ public class KundeForm {
     @Pattern(regexp = "^\\s*(3[01]|[12][0-9]|0[1-9])\\.(1[012]|0[1-9])\\.((?:19|20)\\d{2})\\s*$", message = "{birthDate.hatKeinErforderlichesFormat}")
     private String birthDate;
 
+    private String kundeArt;
+
     public String getName() {
         return name;
     }
@@ -62,5 +64,13 @@ public class KundeForm {
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getKundeArt() {
+        return kundeArt;
+    }
+
+    public void setKundeArt(String kundeArt) {
+        this.kundeArt = kundeArt;
     }
 }

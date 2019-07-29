@@ -2,6 +2,7 @@ package de.anna.springboot.controller;
 
 import de.anna.springboot.model.KundeAssembler;
 import de.anna.springboot.model.dto.KundeDTO;
+import de.anna.springboot.model.enums.KundeArt;
 import de.anna.springboot.model.form.KundeForm;
 import de.anna.springboot.service.KundeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 // jede Methode muss immer alle Daten, die ich zeigen möchte, enthalten !!!! Daten leiter ich in Model weiter!!!
 
@@ -35,7 +37,11 @@ public class KundeWebController {
     @GetMapping("/kundeformular")
     public String kundeFormularZeigen(Model model){
 
+        Map<String, String> kundeArtMap = KundeArt.convertKundeArtEnumToMap();
+        model.addAttribute("kundeArtMap", kundeArtMap);
+
         model.addAttribute("kundeForm", new KundeForm());
+
         return "kundeFormular";
     }
 
@@ -45,10 +51,18 @@ public class KundeWebController {
     public String kundeWeiterleiten(Model model, @Valid @ModelAttribute("kundeForm") KundeForm kundeForm, BindingResult resultOfValidation){
 
         if(resultOfValidation.hasErrors()) {
+
+            Map<String, String> kundeArtMap = KundeArt.convertKundeArtEnumToMap();
+            model.addAttribute("kundeArtMap", kundeArtMap);
+
             model.addAttribute("kundeForm", kundeForm);
             return "kundeFormular";
 
         }else {
+
+            String kundeArtText = KundeArt.convertKundeArtKodeToText(kundeForm.getKundeArt());
+            kundeForm.setKundeArt(kundeArtText);
+
             model.addAttribute("kundeForm", kundeForm);
             return "kundeWeiterleiten";
         }
@@ -82,8 +96,10 @@ public class KundeWebController {
     public String editKunde(@PathVariable Long id, Model model){
 
         KundeDTO kundeDTOById = kundeService.findKundeById(id);
-
         KundeForm kundeForm = kundeAssembler.mapKundeDTOToKundeForm(kundeDTOById);
+
+        Map<String, String> kundeArtMap = KundeArt.convertKundeArtEnumToMap();
+        model.addAttribute("kundeArtMap", kundeArtMap);
 
         model.addAttribute("kundeForm", kundeForm);
 
@@ -94,6 +110,8 @@ public class KundeWebController {
     @PostMapping("/kundeweiterleitenedit")
     public String kundeWeiterleitenEdit(Model model, KundeForm kundeForm){
 
+        String kundeArtText = KundeArt.convertKundeArtKodeToText(kundeForm.getKundeArt());
+        kundeForm.setKundeArt(kundeArtText);
         model.addAttribute("kundeForm", kundeForm);
 
         return "kundeWeiterleitenEdit";

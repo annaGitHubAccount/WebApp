@@ -21,6 +21,7 @@
             <th>Name</th>
             <th>Nachname</th>
             <th>Date of Birth</th>
+            <th>KundeArt</th>
             <th colspan="2">Operation</th>
         </tr>
         </thead>
@@ -36,6 +37,8 @@
                 <fmt:parseDate  value="${kunde.birthDate}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" />
                 <fmt:formatDate value="${parsedDate}" var="formattedBirthDate" type="date" pattern="dd.MM.yyyy" />
                 <td data-label="Date of Birth">${formattedBirthDate}</td>
+
+                <td data-label="KundeArt">${kunde.kundeArt}</td>
 
                 <td data-label="Operation"><a href="/web/editkunde/${kunde.id}">Edit</a></td>
                 <td data-label="Operation"><a href="/web/deletekunde/${kunde.id}">Delete</a></td>

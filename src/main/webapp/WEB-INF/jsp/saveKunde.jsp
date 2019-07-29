@@ -17,6 +17,10 @@
             <td><form:input path="nachname" /></td>
         </tr>
         <tr>
+            <td>KundeArt :</td>
+            <td><form: input path="kundeArt" /></td>
+        </tr>
+        <tr>
             <td> </td>
             <td><input type="submit" value="Save" /></td>
         </tr>

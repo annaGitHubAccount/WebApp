@@ -46,6 +46,15 @@
             </td>
         </tr>
         <tr>
+            <td>KundeArt :</td>
+            <td>
+                <form:select path="kundeArt" cssClass="ui dropdown" items="${kundeArtMap}" />
+            </td>
+            <td>
+                <form:errors path="kundeArt" cssClass="error" />
+            </td>
+        </tr>
+        <tr>
             <td></td>
             <td><input type="submit" value="Save" class="ui button"/></td>
         </tr>

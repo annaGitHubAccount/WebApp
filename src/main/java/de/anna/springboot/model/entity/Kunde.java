@@ -1,9 +1,7 @@
 package de.anna.springboot.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import de.anna.springboot.model.enums.KundeArt;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -21,6 +19,10 @@ public class Kunde {
     private String nachname;
 
     private LocalDate birthDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "KUNDE_ART")
+    private KundeArt kundeArt;
 
 
     public Kunde() {
@@ -64,5 +66,13 @@ public class Kunde {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public KundeArt getKundeArt() {
+        return kundeArt;
+    }
+
+    public void setKundeArt(KundeArt kundeArt) {
+        this.kundeArt = kundeArt;
     }
 }

@@ -1,5 +1,7 @@
 package de.anna.springboot.model.dto;
 
+import de.anna.springboot.model.enums.KundeArt;
+
 import java.time.LocalDate;
 
 public class KundeDTO {
@@ -13,6 +15,8 @@ public class KundeDTO {
     private String nachname;
 
     private LocalDate birthDate;
+
+    private KundeArt kundeArt;
 
 
     public KundeDTO(String name, String nachname) {
@@ -69,5 +73,13 @@ public class KundeDTO {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public KundeArt getKundeArt() {
+        return kundeArt;
+    }
+
+    public void setKundeArt(KundeArt kundeArt) {
+        this.kundeArt = kundeArt;
     }
 }

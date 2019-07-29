@@ -2,6 +2,7 @@ package de.anna.springboot.model;
 
 import de.anna.springboot.model.dto.KundeDTO;
 import de.anna.springboot.model.entity.Kunde;
+import de.anna.springboot.model.enums.KundeArt;
 import de.anna.springboot.model.form.KundeForm;
 import de.anna.springboot.util.DateUtils;
 
@@ -18,6 +19,7 @@ public class KundeAssembler {
         kundeDTO.setName(kunde.getName());
         kundeDTO.setNachname(kunde.getNachname());
         kundeDTO.setBirthDate(kunde.getBirthDate());
+        kundeDTO.setKundeArt(kunde.getKundeArt());
 
         return kundeDTO;
     }
@@ -32,6 +34,7 @@ public class KundeAssembler {
         kunde.setName(kundeDTO.getName());
         kunde.setNachname(kundeDTO.getNachname());
         kunde.setBirthDate(kundeDTO.getBirthDate());
+        kunde.setKundeArt(kundeDTO.getKundeArt());
 
         return kunde;
     }
@@ -46,8 +49,13 @@ public class KundeAssembler {
         kundeDTO.setSteuerId(kundeForm.getSteuerId());
         kundeDTO.setName(kundeForm.getName());
         kundeDTO.setNachname(kundeForm.getNachname());
+
         LocalDate localDate = DateUtils.stringToLocalDate(kundeForm.getBirthDate());
         kundeDTO.setBirthDate(localDate);
+
+        String kundeArtAlsString = kundeForm.getKundeArt();
+        KundeArt kundeArt = KundeArt.kundeFormStringToKundeArtEnum(kundeArtAlsString);
+        kundeDTO.setKundeArt(kundeArt);
 
         return kundeDTO;
     }
@@ -60,8 +68,11 @@ public class KundeAssembler {
         kundeForm.setSteuerId(kundeDTO.getSteuerId());
         kundeForm.setName(kundeDTO.getName());
         kundeForm.setNachname(kundeDTO.getNachname());
+
         String dateToString = DateUtils.localDateToString(kundeDTO.getBirthDate());
         kundeForm.setBirthDate(dateToString);
+
+        kundeForm.setKundeArt(kundeDTO.getKundeArt().toString());
 
         return kundeForm;
     }

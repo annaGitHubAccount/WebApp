@@ -21,6 +21,10 @@
             <td>${kundeForm.birthDate}</td>
         </tr>
         <tr>
+            <td>KundeArt :</td>
+            <td>${kundeForm.kundeArt}</td>
+        </tr>
+        <tr>
             <td> </td>
             <td><input type="submit" value="Save" class="ui button"/></td>
         </tr>
@@ -31,4 +35,5 @@
     <form:hidden path="name"/>
     <form:hidden path="nachname"/>
     <form:hidden path="birthDate"/>
+    <form:hidden path="kundeArt"/>
 </form:form>

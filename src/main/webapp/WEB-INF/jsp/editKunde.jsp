@@ -5,23 +5,27 @@
 <form:form modelAttribute="kundeForm" action="/web/kundeweiterleitenedit">
     <table >
         <tr>
-            <td><form:hidden  path="id" /></td>
+            <td><div class="ui input"><form:hidden  path="id" /></div></td>
         </tr>
         <tr>
             <td>Steuer ID : </td>
-            <td><form:input path="steuerId"  /></td>
+            <td><div class="ui input"><form:input path="steuerId"  /></div></td>
         </tr>
         <tr>
             <td>Name : </td>
-            <td><form:input path="name"  /></td>
+            <td><div class="ui input"><form:input path="name"  /></div></td>
         </tr>
         <tr>
             <td>Nachname :</td>
-            <td><form:input path="nachname" /></td>
+            <td><div class="ui input"><form:input path="nachname" /></div></td>
         </tr>
         <tr>
             <td>Date of Birth :</td>
-            <td><form:input path="birthDate" id="datepickereditkunde" /></td>
+            <td><div class="ui input"><form:input path="birthDate" id="datepickereditkunde" /></div></td>
+        </tr>
+        <tr>
+            <td>KundeArt :</td>
+            <td><form:select path="kundeArt" cssClass="ui dropdown" items="${kundeArtMap}" /></td>
         </tr>
         <tr>
             <td> </td>
