@@ -18,13 +18,12 @@ public class KundeServiceImpl implements KundeService {
     @Autowired
     KundeRepository kundeRepository;
 
-    private KundeAssembler kundeAssembler = new KundeAssembler();
 
     @Override
     @Transactional
     public void save(KundeDTO kundeDTO) {
 
-        Kunde kunde = kundeAssembler.mapKundeDTOToKunde(kundeDTO);
+        Kunde kunde = KundeAssembler.mapKundeDTOToKunde(kundeDTO);
         kundeRepository.save(kunde);
     }
 
@@ -36,7 +35,7 @@ public class KundeServiceImpl implements KundeService {
         ArrayList<Kunde> kundeList = (ArrayList<Kunde>) kundeRepository.findAll();
 
         for (Kunde kunde : kundeList) {
-            KundeDTO kundeDTO = kundeAssembler.mapKundeToKundeDTO(kunde);
+            KundeDTO kundeDTO = KundeAssembler.mapKundeToKundeDTO(kunde);
             kundeDTOList.add(kundeDTO);
         }
 
@@ -52,7 +51,7 @@ public class KundeServiceImpl implements KundeService {
 
         KundeDTO kundeDTO = new KundeDTO();
         if (kundeByID.isPresent()) {
-            kundeDTO = kundeAssembler.mapKundeToKundeDTO(kundeByID.get());
+            kundeDTO = KundeAssembler.mapKundeToKundeDTO(kundeByID.get());
         }
 
         return kundeDTO;
@@ -76,7 +75,7 @@ public class KundeServiceImpl implements KundeService {
         List<Kunde> kundenByNachname = kundeRepository.findKundenByNachname(nachname);
 
         for (Kunde kunde : kundenByNachname) {
-            KundeDTO kundeDTO = kundeAssembler.mapKundeToKundeDTO(kunde);
+            KundeDTO kundeDTO = KundeAssembler.mapKundeToKundeDTO(kunde);
             kundeDTOList.add(kundeDTO);
         }
 

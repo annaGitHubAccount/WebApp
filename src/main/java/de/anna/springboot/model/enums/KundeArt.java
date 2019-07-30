@@ -32,18 +32,32 @@ public enum KundeArt {
     }
 
 
-    public static KundeArt kundeFormStringToKundeArtEnum(String kundeArtAlsString){
+    public static KundeArt convertToKundeArtByCode(String kundeArtByKode) {
 
         KundeArt[] kundeArtsArray = values();
 
         for(KundeArt kundeArt : kundeArtsArray){
-            if(kundeArt.getText().equals(kundeArtAlsString)){
+            if(kundeArt.getKode().equals(kundeArtByKode)){
                 return kundeArt;
             }
         }
 
         // return null; // nieladnie zwracac null, wiec lepiej rzucic wyjatek
-        throw new RuntimeException("Es gibt solche KundeArt nicht !!!");
+        throw new RuntimeException("Es gibt solchen KundenArt by Kode nicht !!!");
+
+    }
+
+    public static KundeArt convertToKundeArtByText(String kundeArtByText) {
+
+        KundeArt[] kundeArtsArray = values();
+
+        for(KundeArt kundeArt : kundeArtsArray){
+            if(kundeArt.getText().equals(kundeArtByText)){
+                return kundeArt;
+            }
+        }
+
+        throw new RuntimeException("Es gibt solchen KundenArt by Text nicht !!!");
 
     }
 
@@ -51,13 +65,13 @@ public enum KundeArt {
 
         KundeArt[] kundeArtsArray = values();
 
-        for(KundeArt kundeArt : kundeArtsArray){
-            if(kundeArt.getKode().equals(kundeArtKode)){
+        for (KundeArt kundeArt : kundeArtsArray) {
+            if (kundeArt.getKode().equals(kundeArtKode)) {
                 return kundeArt.getText();
             }
         }
 
-        throw new RuntimeException("Es gibt solche KundeArtKode nicht !!!");
+        throw new RuntimeException("Es gibt solchen Kode nicht !!!");
     }
 
 

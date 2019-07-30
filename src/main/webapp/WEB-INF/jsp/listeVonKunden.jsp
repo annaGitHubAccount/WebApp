@@ -1,5 +1,5 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 
@@ -12,6 +12,7 @@
     </c:if>
 </h1>
 
+<c:if test="${not empty kundeList}">
 
     <table class="ui celled table striped">
 
@@ -34,11 +35,11 @@
                 <td data-label="Name">${kunde.name}</td>
                 <td data-label="Nachname">${kunde.nachname}</td>
 
-                <fmt:parseDate  value="${kunde.birthDate}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" />
-                <fmt:formatDate value="${parsedDate}" var="formattedBirthDate" type="date" pattern="dd.MM.yyyy" />
+                <fmt:parseDate value="${kunde.birthDate}" type="date" pattern="yyyy-MM-dd" var="parsedDate"/>
+                <fmt:formatDate value="${parsedDate}" var="formattedBirthDate" type="date" pattern="dd.MM.yyyy"/>
                 <td data-label="Date of Birth">${formattedBirthDate}</td>
 
-                <td data-label="KundeArt">${kunde.kundeArt}</td>
+                <td data-label="KundeArt">${kunde.kundeArt.text}</td>
 
                 <td data-label="Operation"><a href="/web/editkunde/${kunde.id}">Edit</a></td>
                 <td data-label="Operation"><a href="/web/deletekunde/${kunde.id}">Delete</a></td>
@@ -47,3 +48,5 @@
         </tbody>
 
     </table>
+
+</c:if>

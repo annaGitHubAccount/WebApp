@@ -8,9 +8,12 @@ import de.anna.springboot.util.DateUtils;
 
 import java.time.LocalDate;
 
-public class KundeAssembler {
+public final class KundeAssembler {
 
-    public KundeDTO mapKundeToKundeDTO(Kunde kunde){
+    private KundeAssembler() {
+    }
+
+    public static KundeDTO mapKundeToKundeDTO(Kunde kunde) {
 
         KundeDTO kundeDTO = new KundeDTO();
 
@@ -25,7 +28,7 @@ public class KundeAssembler {
     }
 
 
-    public Kunde mapKundeDTOToKunde(KundeDTO kundeDTO){
+    public static Kunde mapKundeDTOToKunde(KundeDTO kundeDTO) {
 
         Kunde kunde = new Kunde();
 
@@ -40,8 +43,7 @@ public class KundeAssembler {
     }
 
 
-
-    public KundeDTO mapKundeFormToKundeDTO(KundeForm kundeForm){
+    public static KundeDTO mapKundeFormToKundeDTO(KundeForm kundeForm) {
 
         KundeDTO kundeDTO = new KundeDTO();
 
@@ -53,14 +55,15 @@ public class KundeAssembler {
         LocalDate localDate = DateUtils.stringToLocalDate(kundeForm.getBirthDate());
         kundeDTO.setBirthDate(localDate);
 
-        String kundeArtAlsString = kundeForm.getKundeArt();
-        KundeArt kundeArt = KundeArt.kundeFormStringToKundeArtEnum(kundeArtAlsString);
+        String kundeArtByCode = kundeForm.getKundeArt();
+
+        KundeArt kundeArt = KundeArt.convertToKundeArtByText(kundeArtByCode);
         kundeDTO.setKundeArt(kundeArt);
 
         return kundeDTO;
     }
 
-    public KundeForm mapKundeDTOToKundeForm(KundeDTO kundeDTO){
+    public static KundeForm mapKundeDTOToKundeForm(KundeDTO kundeDTO) {
 
         KundeForm kundeForm = new KundeForm();
 

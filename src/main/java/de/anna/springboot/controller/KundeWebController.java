@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -20,111 +21,110 @@ import java.util.Map;
 @RequestMapping("/web")
 public class KundeWebController {
 
+    private static final String KUNDE_FORM = "kundeForm";
+    private static final String KUNDE_LIST = "kundeList";
 
     @Autowired
     KundeService kundeService;
 
-    KundeAssembler kundeAssembler = new KundeAssembler();
-
 
     @GetMapping({"/", "/homepage"})
-    public String homePage(){
+    public String homePage() {
 
         return "homePage";
     }
 
 
     @GetMapping("/kundeformular")
-    public String kundeFormularZeigen(Model model){
+    public String kundeFormularZeigen(Model model) {
 
         Map<String, String> kundeArtMap = KundeArt.convertKundeArtEnumToMap();
         model.addAttribute("kundeArtMap", kundeArtMap);
 
-        model.addAttribute("kundeForm", new KundeForm());
+        model.addAttribute(KUNDE_FORM, new KundeForm());
 
         return "kundeFormular";
     }
 
 
-
     @PostMapping("/kundeweiterleiten")
-    public String kundeWeiterleiten(Model model, @Valid @ModelAttribute("kundeForm") KundeForm kundeForm, BindingResult resultOfValidation){
+    public String kundeWeiterleiten(Model model, @Valid @ModelAttribute(KUNDE_FORM) KundeForm kundeForm, BindingResult resultOfValidation) {
 
-        if(resultOfValidation.hasErrors()) {
+        if (resultOfValidation.hasErrors()) {
 
             Map<String, String> kundeArtMap = KundeArt.convertKundeArtEnumToMap();
             model.addAttribute("kundeArtMap", kundeArtMap);
 
-            model.addAttribute("kundeForm", kundeForm);
+            model.addAttribute(KUNDE_FORM, kundeForm);
             return "kundeFormular";
 
-        }else {
+        } else {
 
             String kundeArtText = KundeArt.convertKundeArtKodeToText(kundeForm.getKundeArt());
             kundeForm.setKundeArt(kundeArtText);
 
-            model.addAttribute("kundeForm", kundeForm);
+            model.addAttribute(KUNDE_FORM, kundeForm);
             return "kundeWeiterleiten";
         }
     }
 
 
     @PostMapping("/savekunde")
-    public String saveKunde(@ModelAttribute("kundeForm") KundeForm kundeForm, Model model){
+    public String saveKunde(@ModelAttribute(KUNDE_FORM) KundeForm kundeForm, Model model) {
 
-        KundeDTO kundeDTO = kundeAssembler.mapKundeFormToKundeDTO(kundeForm);
+        KundeDTO kundeDTO = KundeAssembler.mapKundeFormToKundeDTO(kundeForm);
         kundeService.save(kundeDTO);
 
         List<KundeDTO> kundeDTOList = kundeService.findAll();
-        model.addAttribute("kundeList", kundeDTOList);
+        model.addAttribute(KUNDE_LIST, kundeDTOList);
 
         return "listeVonKunden";
     }
 
 
     @GetMapping("/listevonkunden")
-    public String zeigeListeVonKunden(Model model){
+    public String zeigeListeVonKunden(Model model) {
 
         List<KundeDTO> kundeDTOList = kundeService.findAll();
-        model.addAttribute("kundeList", kundeDTOList);
+        model.addAttribute(KUNDE_LIST, kundeDTOList);
 
         return "listeVonKunden";
     }
 
 
     @GetMapping("/editkunde/{id}")
-    public String editKunde(@PathVariable Long id, Model model){
+    public String editKunde(@PathVariable Long id, Model model) {
 
         KundeDTO kundeDTOById = kundeService.findKundeById(id);
-        KundeForm kundeForm = kundeAssembler.mapKundeDTOToKundeForm(kundeDTOById);
+        KundeForm kundeForm = KundeAssembler.mapKundeDTOToKundeForm(kundeDTOById);
 
         Map<String, String> kundeArtMap = KundeArt.convertKundeArtEnumToMap();
         model.addAttribute("kundeArtMap", kundeArtMap);
 
-        model.addAttribute("kundeForm", kundeForm);
+        model.addAttribute(KUNDE_FORM, kundeForm);
 
         return "editKunde";
     }
 
 
     @PostMapping("/kundeweiterleitenedit")
-    public String kundeWeiterleitenEdit(Model model, KundeForm kundeForm){
+    public String kundeWeiterleitenEdit(Model model, KundeForm kundeForm) {
 
         String kundeArtText = KundeArt.convertKundeArtKodeToText(kundeForm.getKundeArt());
         kundeForm.setKundeArt(kundeArtText);
-        model.addAttribute("kundeForm", kundeForm);
+        model.addAttribute(KUNDE_FORM, kundeForm);
 
         return "kundeWeiterleitenEdit";
     }
 
 
     @GetMapping("/deletekunde/{id}")
-    public String deleteKunde(@PathVariable Long id, Model model){
+    public String deleteKunde(@PathVariable Long id, Model model) {
 
         kundeService.deleteKundeById(id);
 
         List<KundeDTO> kundeDTOList = kundeService.findAll();
-        model.addAttribute("kundeList", kundeDTOList);
+        model.addAttribute(KUNDE_LIST, kundeDTOList);
 
         return "listeVonKunden";
     }

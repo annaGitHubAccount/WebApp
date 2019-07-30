@@ -10,14 +10,14 @@ public final class DateUtils {
     private DateUtils() {
     }
 
-    public static LocalDate stringToLocalDate(String dateAusFormular){
+    public static LocalDate stringToLocalDate(String dateAusFormular) {
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_STRING_FORMAT);
         return LocalDate.parse(dateAusFormular, dateTimeFormatter);
     }
 
 
-    public static String localDateToString(LocalDate localDate){
+    public static String localDateToString(LocalDate localDate) {
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_STRING_FORMAT);
         return localDate.format(dateTimeFormatter);

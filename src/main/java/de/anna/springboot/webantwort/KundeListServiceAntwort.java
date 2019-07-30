@@ -5,10 +5,7 @@ import de.anna.springboot.model.dto.KundeDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-
-// controller zwraca zawsze 1 obiekt, nie liste obiektow, dlatego elegancko jest obudowac moja liste obiektow w inny obiekt + zawrzec informacje oo ewentualnym błędzie
-
-public class KundeListServiceAntwort extends KundeServiceAntwort{
+public class KundeListServiceAntwort extends KundeServiceAntwort {
 
     private List<KundeDTO> kundeDTOList = new ArrayList<>();
 
@@ -18,7 +15,6 @@ public class KundeListServiceAntwort extends KundeServiceAntwort{
         super(isOk, error);
         this.kundeDTOList = kundeDTOList;
     }
-
 
 
     public List<KundeDTO> getKundeDTOList() {

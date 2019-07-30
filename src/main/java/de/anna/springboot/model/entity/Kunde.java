@@ -1,6 +1,7 @@
 package de.anna.springboot.model.entity;
 
 import de.anna.springboot.model.enums.KundeArt;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -20,7 +21,6 @@ public class Kunde {
 
     private LocalDate birthDate;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "KUNDE_ART")
     private KundeArt kundeArt;
 

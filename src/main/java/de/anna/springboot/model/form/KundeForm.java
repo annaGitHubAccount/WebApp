@@ -9,16 +9,16 @@ public class KundeForm {
 
     private Long id;
 
-    @NotNull(message="{feld.isErfordelich}")
-    @NotEmpty(message="{feld.isErfordelich}")
+    @NotNull(message = "{feld.isErfordelich}")
+    @NotEmpty(message = "{feld.isErfordelich}")
     @Size(min = 9, max = 9, message = "{steuerId.muss9DiditsHaben}")
     private String steuerId;
 
-    @Size(min=1, message= "{feld.isErfordelich}")
+    @Size(min = 1, message = "{feld.isErfordelich}")
     private String name;
 
-    @NotNull(message= "{feld.isErfordelich}")
-    @Size(min=1, message= "{feld.isErfordelich}")
+    @NotNull(message = "{feld.isErfordelich}")
+    @Size(min = 1, message = "{feld.isErfordelich}")
     private String nachname;
 
     @Pattern(regexp = "^\\s*(3[01]|[12][0-9]|0[1-9])\\.(1[012]|0[1-9])\\.((?:19|20)\\d{2})\\s*$", message = "{birthDate.hatKeinErforderlichesFormat}")

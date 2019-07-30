@@ -22,7 +22,7 @@ public class TilesConfig {
     public TilesConfigurer getTilesConfigurer() {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
 
-        tilesConfigurer.setDefinitions("/WEB-INF/tiles.xml");
+        tilesConfigurer.setDefinitions("/WEB-INF/tiles/tiles.xml", "/WEB-INF/tiles/kunde.xml");
 
         return tilesConfigurer;
     }
