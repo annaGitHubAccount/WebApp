@@ -4,7 +4,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 // https://www.baeldung.com/jpa-persisting-enums-in-jpa
-// diese Methoden dienen nur für JPA für Kommunikation zwischen Entity und Datembank
+// dient zu Kommunikation für JPA zwischen Entity und Datenbank
 
 @Converter(autoApply = true)
 public class KundeArtConverter implements AttributeConverter<KundeArt, String> {
@@ -15,16 +15,17 @@ public class KundeArtConverter implements AttributeConverter<KundeArt, String> {
         if(kundeArt == null) {
             return null;
         }
+
         return kundeArt.getKode();
     }
 
     @Override
-    public KundeArt convertToEntityAttribute(String kundeArtAlsString) {
+    public KundeArt convertToEntityAttribute(String kundeArtByKode) {
 
-        if(kundeArtAlsString == null){
+        if (kundeArtByKode == null){
             return null;
         }
 
-        return KundeArt.convertToKundeArtByCode(kundeArtAlsString);
+        return KundeArt.convertToKundeArtByCode(kundeArtByKode);
     }
 }
