@@ -35,7 +35,7 @@ public class KundeWebController {
     }
 
 
-    @GetMapping("/kundeformular")
+    @GetMapping("/addkunde")
     public String kundeFormularZeigen(Model model) {
 
         Map<String, String> kundeArtMap = KundeArt.convertKundeArtEnumToMap();
@@ -43,7 +43,7 @@ public class KundeWebController {
 
         model.addAttribute(KUNDE_FORM, new KundeForm());
 
-        return "kundeFormular";
+        return "addKunde";
     }
 
 
@@ -56,7 +56,7 @@ public class KundeWebController {
             model.addAttribute("kundeArtMap", kundeArtMap);
 
             model.addAttribute(KUNDE_FORM, kundeForm);
-            return "kundeFormular";
+            return "addKunde";
 
         } else {
 

@@ -1,30 +1,23 @@
-package de.anna.springboot.model.entity;
+package de.anna.springboot.model.form;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "PRODUKT_STAMMDATEN")
-public class ProduktStammdaten {
+public class ProduktStammdatenForm {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Size(min = 1, message = "{feld.isErfordelich}")
     private String name;
 
-    // Precision is the total number of digits. Scale is the number of digits after the decimal point.
-    @Column(precision=10, scale=2)
+    // liczba lub liczba z max. 2 cyframi po przecinku:
+    @Digits(integer = 10, fraction = 2, message = "{preis.hatKeinErforderlichesFormat}")
     private BigDecimal preis;
 
-    @Column(name = "IS_AKTIV")
     private boolean aktiv;
 
-
-    public ProduktStammdaten() {
-    }
 
 
     public Long getId() {

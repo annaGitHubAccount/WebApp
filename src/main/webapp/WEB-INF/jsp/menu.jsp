@@ -1,11 +1,15 @@
 <div style="padding: 5px;">
 
-    <ul>
 
-        <li><a href="${pageContext.request.contextPath}/web/homepage">Home Page</a></li>
-        <li><a href="${pageContext.request.contextPath}/web/kundeformular">Kunde Formular</a></li>
-        <li><a href="${pageContext.request.contextPath}/web/listevonkunden">Liste von Kunden</a></li>
+    <br>
+    <li><a href="${pageContext.request.contextPath}/web/homepage">Homepage</a></li>
+    <br>
+    <li><a href="${pageContext.request.contextPath}/web/addkunde">Füge neuen Kunden hinzu</a></li>
+    <li><a href="${pageContext.request.contextPath}/web/listevonkunden">Liste von Kunden</a></li>
+    <br>
+    <li><a href="${pageContext.request.contextPath}/web/addproduktstammdaten">Füge neuen Produktstammdaten hinzu</a></li>
+    <li><a href="${pageContext.request.contextPath}/web/produktstammdatenlist">Liste von Produktstammdaten</a></li>
+    <br>
 
-    </ul>
 
 </div>

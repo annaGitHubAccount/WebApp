@@ -10,9 +10,9 @@
         <put-attribute name="body" value="/WEB-INF/jsp/homePage.jsp" />
     </definition>
 
-    <definition name="kundeFormular" extends="base.definition">
+    <definition name="addKunde" extends="base.definition">
         <put-attribute name="title" value="Add new Kunde" />
-        <put-attribute name="body" value="/WEB-INF/jsp/kundeFormular.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/addKunde.jsp" />
     </definition>
 
     <definition name="kundeWeiterleiten" extends="base.definition">

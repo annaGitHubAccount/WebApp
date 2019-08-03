@@ -1,6 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<h1>Add new Kunde</h1>
+<h1>Füge neuen Kunden hinzu</h1>
 
 <style>
     .error{color:red}
@@ -37,9 +37,9 @@
             </td>
         </tr>
         <tr>
-            <td>Date of Birth :</td>
+            <td>Geburtsdatum :</td>
             <td>
-                <div class="ui input"><form:input path="birthDate" id="datepickerkundeformular" /></div>
+                <div class="ui input"><form:input path="birthDate" id="datepickeraddkunde" /></div>
             </td>
             <td>
                 <form:errors path="birthDate" cssClass="error" />

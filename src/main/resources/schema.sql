@@ -25,5 +25,5 @@ create table Produkt_Stammdaten
   id    long primary key auto_increment not null,
   name     varchar(50)  not null,
   preis    decimal(20)  not null,
-  isAktiv   boolean not null
+  is_aktiv   boolean not null
 );

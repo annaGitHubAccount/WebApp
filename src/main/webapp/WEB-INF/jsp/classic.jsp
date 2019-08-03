@@ -15,7 +15,7 @@
     <script>
         $( function() {
             var dateFormat = { dateFormat: "dd.mm.yy" };
-            $( "#datepickerkundeformular" ).datepicker(dateFormat);
+            $( "#datepickeraddkunde" ).datepicker(dateFormat);
             $( "#datepickereditkunde" ).datepicker(dateFormat);
         } );
     </script>

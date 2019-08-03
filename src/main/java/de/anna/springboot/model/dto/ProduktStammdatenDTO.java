@@ -1,31 +1,22 @@
-package de.anna.springboot.model.entity;
+package de.anna.springboot.model.dto;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "PRODUKT_STAMMDATEN")
-public class ProduktStammdaten {
+public class ProduktStammdatenDTO {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    // Precision is the total number of digits. Scale is the number of digits after the decimal point.
-    @Column(precision=10, scale=2)
     private BigDecimal preis;
 
-    @Column(name = "IS_AKTIV")
     private boolean aktiv;
 
+    private String aktivStr;
 
-    public ProduktStammdaten() {
+
+    public ProduktStammdatenDTO() {
     }
-
 
     public Long getId() {
         return id;
@@ -58,4 +49,5 @@ public class ProduktStammdaten {
     public void setAktiv(boolean aktiv) {
         this.aktiv = aktiv;
     }
+
 }

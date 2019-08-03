@@ -21,7 +21,7 @@
             <th>Steuer ID</th>
             <th>Name</th>
             <th>Nachname</th>
-            <th>Date of Birth</th>
+            <th>Geburtsdatum</th>
             <th>KundeArt</th>
             <th colspan="2">Operation</th>
         </tr>
@@ -37,12 +37,12 @@
 
                 <fmt:parseDate value="${kunde.birthDate}" type="date" pattern="yyyy-MM-dd" var="parsedDate"/>
                 <fmt:formatDate value="${parsedDate}" var="formattedBirthDate" type="date" pattern="dd.MM.yyyy"/>
-                <td data-label="Date of Birth">${formattedBirthDate}</td>
+                <td data-label="Geburtsdatum">${formattedBirthDate}</td>
 
                 <td data-label="KundeArt">${kunde.kundeArt.text}</td>
 
-                <td data-label="Operation"><a href="/web/editkunde/${kunde.id}">Edit</a></td>
-                <td data-label="Operation"><a href="/web/deletekunde/${kunde.id}">Delete</a></td>
+                <td data-label="Operation"><a href="/web/editkunde/${kunde.id}">Ändern</a></td>
+                <td data-label="Operation"><a href="/web/deletekunde/${kunde.id}">Löschen</a></td>
             </tr>
         </c:forEach>
         </tbody>
