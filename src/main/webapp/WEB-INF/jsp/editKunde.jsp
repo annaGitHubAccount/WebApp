@@ -27,6 +27,70 @@
             <td>KundeArt :</td>
             <td><form:select path="kundeArt" cssClass="ui dropdown" items="${kundeArtMap}" /></td>
         </tr>
+
+        <tr>
+            <td>
+                <h1>Meldeanschrift</h1>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Land :</td>
+            <td>
+                <div class="ui input"><form:input path="landVonMeldeanschrift"/></div>
+            </td>
+        </tr>
+        <tr>
+            <td>Ort :</td>
+            <td>
+                <div class="ui input"><form:input path="ortVonMeldeanschrift"/></div>
+            </td>
+        </tr>
+        <tr>
+            <td>Strasse :</td>
+            <td>
+                <div class="ui input"><form:input path="strasseVonMeldeanschrift"/></div>
+            </td>
+        </tr>
+        <tr>
+            <td>Haus Nr. :</td>
+            <td>
+                <div class="ui input"><form:input path="hausNrVonMeldeanschrift"/></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <h1>Postanschrift</h1>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Land :</td>
+            <td>
+                <div class="ui input"><form:input path="landVonPostanschrift"/></div>
+            </td>
+        </tr>
+        <tr>
+            <td>Ort :</td>
+            <td>
+                <div class="ui input"><form:input path="ortVonPostanschrift"/></div>
+            </td>
+        </tr>
+        <tr>
+            <td>Strasse :</td>
+            <td>
+                <div class="ui input"><form:input path="strasseVonPostanschrift"/></div>
+            </td>
+        </tr>
+        <tr>
+            <td>Haus Nr. :</td>
+            <td>
+                <div class="ui input"><form:input path="hausNrVonPostanschrift"/></div>
+            </td>
+        </tr>
+
+        
         <tr>
             <td> </td>
             <td><input type="submit" value="Update" /></td>

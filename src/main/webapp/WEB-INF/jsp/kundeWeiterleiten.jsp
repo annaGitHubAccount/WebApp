@@ -24,6 +24,54 @@
             <td>KundeArt :</td>
             <td>${kundeForm.kundeArt}</td>
         </tr>
+
+
+        <tr>
+            <td>
+                <h1>Meldeanschrift</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>Land :</td>
+            <td>${kundeForm.landVonMeldeanschrift}</td>
+        </tr>
+        <tr>
+            <td>Ort :</td>
+            <td>${kundeForm.ortVonMeldeanschrift}</td>
+        </tr>
+        <tr>
+            <td>Strasse :</td>
+            <td>${kundeForm.strasseVonMeldeanschrift}</td>
+        </tr>
+        <tr>
+            <td>Haus Nr. :</td>
+            <td>${kundeForm.hausNrVonMeldeanschrift}</td>
+        </tr>
+
+
+        <tr>
+            <td>
+                <h1>Postanschrift</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>Land :</td>
+            <td>${kundeForm.landVonPostanschrift}</td>
+        </tr>
+        <tr>
+            <td>Ort :</td>
+            <td>${kundeForm.ortVonPostanschrift}</td>
+        </tr>
+        <tr>
+            <td>Strasse :</td>
+            <td>${kundeForm.strasseVonPostanschrift}</td>
+        </tr>
+        <tr>
+            <td>Haus Nr. :</td>
+            <td>${kundeForm.hausNrVonPostanschrift}</td>
+        </tr>
+
+
         <tr>
             <td> </td>
             <td><input type="submit" value="Save" class="ui button"/></td>
@@ -35,5 +83,15 @@
     <form:hidden path="steuerId"/>
     <form:hidden path="birthDate"/>
     <form:hidden path="kundeArt"/>
+
+    <form:hidden path="landVonMeldeanschrift"/>
+    <form:hidden path="ortVonMeldeanschrift"/>
+    <form:hidden path="strasseVonMeldeanschrift"/>
+    <form:hidden path="hausNrVonMeldeanschrift"/>
+
+    <form:hidden path="landVonPostanschrift"/>
+    <form:hidden path="ortVonPostanschrift"/>
+    <form:hidden path="strasseVonPostanschrift"/>
+    <form:hidden path="hausNrVonPostanschrift"/>
 
 </form:form>

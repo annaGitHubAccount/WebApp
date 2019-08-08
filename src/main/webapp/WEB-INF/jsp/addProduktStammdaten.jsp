@@ -32,7 +32,7 @@
         <tr>
             <td>Is Aktiv ? :</td>
             <td>
-                <div><form:checkbox path="aktiv" /></div>
+                <form:checkbox path="aktiv" cssClass="ui checkbox"/>
             </td>
             <td>
                 <form:errors path="aktiv" cssClass="error"/>

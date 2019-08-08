@@ -8,6 +8,10 @@ CREATE SEQUENCE produkt_stammdaten__seq
     START WITH 100
     INCREMENT BY 1;
 
+CREATE SEQUENCE ADRESSE_SEQ
+    MAXVALUE 99999999999999
+    START WITH 100
+    INCREMENT BY 1;
 
 
 create table Kunde
@@ -26,4 +30,17 @@ create table Produkt_Stammdaten
   name     varchar(50)  not null,
   preis    decimal(20)  not null,
   is_aktiv   boolean not null
+);
+
+create table Adresse
+(
+    ID number(10) NOT NULL,
+    LAND VARCHAR(50) NOT NULL,
+    ORT VARCHAR(50) NOT NULL,
+    STRASSE VARCHAR2(50) NOT NULL,
+    HAUS_NR VARCHAR(10) NOT NULL,
+    KUNDE_ID NUMBER(10) NOT NULL,
+    ADRESSE_ART VARCHAR(2) NOT NULL,
+    CONSTRAINT ADRESSE_PK PRIMARY KEY(ID),
+    CONSTRAINT ADRESSE_KUNDE_FK FOREIGN KEY(KUNDE_ID) REFERENCES Kunde(ID)
 );

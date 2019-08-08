@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <h1>Wollen Sie wirklich die Produkt Stammdaten speichern?</h1>
 
@@ -14,7 +15,14 @@
         </tr>
         <tr>
             <td>Is Aktiv :</td>
-            <td>${produktStammdatenForm.aktiv}</td>
+            <td>
+                <c:if test="${produktStammdatenForm.aktiv}">
+                    <i class="check square outline icon"></i>
+                </c:if>
+                <c:if test="${not produktStammdatenForm.aktiv}">
+                    <i class="square outline icon"></i>
+                </c:if>
+            </td>
         </tr>
         <tr>
             <td></td>

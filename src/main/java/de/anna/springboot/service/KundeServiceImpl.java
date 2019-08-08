@@ -1,13 +1,12 @@
 package de.anna.springboot.service;
 
-import de.anna.springboot.model.KundeAssembler;
+import de.anna.springboot.model.assembler.KundeKundeDTOAssembler;
 import de.anna.springboot.model.dto.KundeDTO;
 import de.anna.springboot.model.entity.Kunde;
 import de.anna.springboot.repository.KundeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,8 +22,23 @@ public class KundeServiceImpl implements KundeService {
     @Transactional
     public void save(KundeDTO kundeDTO) {
 
-        Kunde kunde = KundeAssembler.mapKundeDTOToKunde(kundeDTO);
-        kundeRepository.save(kunde);
+        if (kundeDTO.getId() == null) {
+
+            Kunde kunde = KundeKundeDTOAssembler.mapKundeDTOToKunde(kundeDTO, new Kunde());
+            kundeRepository.save(kunde);
+
+        } else {
+
+            Optional<Kunde> kundeRepositoryById = kundeRepository.findById(kundeDTO.getId());
+
+            if (kundeRepositoryById.isPresent()) {
+                Kunde kundeFromDatenbank = kundeRepositoryById.get();
+                Kunde kunde = KundeKundeDTOAssembler.mapKundeDTOToKunde(kundeDTO, kundeFromDatenbank);
+                kundeRepository.save(kunde);
+            }
+        }
+
+
     }
 
     @Override
@@ -35,7 +49,7 @@ public class KundeServiceImpl implements KundeService {
         ArrayList<Kunde> kundeList = (ArrayList<Kunde>) kundeRepository.findAll();
 
         for (Kunde kunde : kundeList) {
-            KundeDTO kundeDTO = KundeAssembler.mapKundeToKundeDTO(kunde);
+            KundeDTO kundeDTO = KundeKundeDTOAssembler.mapKundeToKundeDTO(kunde);
             kundeDTOList.add(kundeDTO);
         }
 
@@ -51,7 +65,7 @@ public class KundeServiceImpl implements KundeService {
 
         KundeDTO kundeDTO = new KundeDTO();
         if (kundeByID.isPresent()) {
-            kundeDTO = KundeAssembler.mapKundeToKundeDTO(kundeByID.get());
+            kundeDTO = KundeKundeDTOAssembler.mapKundeToKundeDTO(kundeByID.get());
         }
 
         return kundeDTO;
@@ -75,7 +89,7 @@ public class KundeServiceImpl implements KundeService {
         List<Kunde> kundenByNachname = kundeRepository.findKundenByNachname(nachname);
 
         for (Kunde kunde : kundenByNachname) {
-            KundeDTO kundeDTO = KundeAssembler.mapKundeToKundeDTO(kunde);
+            KundeDTO kundeDTO = KundeKundeDTOAssembler.mapKundeToKundeDTO(kunde);
             kundeDTOList.add(kundeDTO);
         }
 

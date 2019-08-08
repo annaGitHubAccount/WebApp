@@ -34,7 +34,7 @@
         <tr>
             <td>Is Aktiv :</td>
             <td>
-                <div class="ui input"><form:input path="aktiv"/></div>
+                <form:checkbox path="aktiv" cssClass="ui checkbox"/>
             </td>
         </tr>
         <tr>

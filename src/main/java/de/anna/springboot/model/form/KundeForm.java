@@ -1,5 +1,7 @@
 package de.anna.springboot.model.form;
 
+import de.anna.springboot.model.dto.KundeDTO;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -25,6 +27,30 @@ public class KundeForm {
     private String birthDate;
 
     private String kundeArt;
+
+    @NotNull(message = "{feld.isErfordelich}")
+    @NotEmpty(message = "{feld.isErfordelich}")
+    private String landVonMeldeanschrift;
+
+    @NotNull(message = "{feld.isErfordelich}")
+    @NotEmpty(message = "{feld.isErfordelich}")
+    private String ortVonMeldeanschrift;
+
+    @NotNull(message = "{feld.isErfordelich}")
+    @NotEmpty(message = "{feld.isErfordelich}")
+    private String strasseVonMeldeanschrift;
+
+    @NotNull(message = "{feld.isErfordelich}")
+    @NotEmpty(message = "{feld.isErfordelich}")
+    private String hausNrVonMeldeanschrift;
+
+    private String landVonPostanschrift;
+    private String ortVonPostanschrift;
+    private String strasseVonPostanschrift;
+    private String hausNrVonPostanschrift;
+
+
+
 
     public String getName() {
         return name;
@@ -73,4 +99,70 @@ public class KundeForm {
     public void setKundeArt(String kundeArt) {
         this.kundeArt = kundeArt;
     }
+
+    public String getLandVonMeldeanschrift() {
+        return landVonMeldeanschrift;
+    }
+
+    public void setLandVonMeldeanschrift(String landVonMeldeanschrift) {
+        this.landVonMeldeanschrift = landVonMeldeanschrift;
+    }
+
+    public String getOrtVonMeldeanschrift() {
+        return ortVonMeldeanschrift;
+    }
+
+    public void setOrtVonMeldeanschrift(String ortVonMeldeanschrift) {
+        this.ortVonMeldeanschrift = ortVonMeldeanschrift;
+    }
+
+    public String getStrasseVonMeldeanschrift() {
+        return strasseVonMeldeanschrift;
+    }
+
+    public void setStrasseVonMeldeanschrift(String strasseVonMeldeanschrift) {
+        this.strasseVonMeldeanschrift = strasseVonMeldeanschrift;
+    }
+
+    public String getHausNrVonMeldeanschrift() {
+        return hausNrVonMeldeanschrift;
+    }
+
+    public void setHausNrVonMeldeanschrift(String hausNrVonMeldeanschrift) {
+        this.hausNrVonMeldeanschrift = hausNrVonMeldeanschrift;
+    }
+
+    public String getLandVonPostanschrift() {
+        return landVonPostanschrift;
+    }
+
+    public void setLandVonPostanschrift(String landVonPostanschrift) {
+        this.landVonPostanschrift = landVonPostanschrift;
+    }
+
+    public String getOrtVonPostanschrift() {
+        return ortVonPostanschrift;
+    }
+
+    public void setOrtVonPostanschrift(String ortVonPostanschrift) {
+        this.ortVonPostanschrift = ortVonPostanschrift;
+    }
+
+    public String getStrasseVonPostanschrift() {
+        return strasseVonPostanschrift;
+    }
+
+    public void setStrasseVonPostanschrift(String strasseVonPostanschrift) {
+        this.strasseVonPostanschrift = strasseVonPostanschrift;
+    }
+
+    public String getHausNrVonPostanschrift() {
+        return hausNrVonPostanschrift;
+    }
+
+    public void setHausNrVonPostanschrift(String hausNrVonPostanschrift) {
+        this.hausNrVonPostanschrift = hausNrVonPostanschrift;
+    }
+
+
 }

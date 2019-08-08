@@ -6,3 +6,12 @@ insert into Produkt_Stammdaten(id, name, preis, is_aktiv) values (1, 'Produkt1',
 insert into Produkt_Stammdaten(id, name, preis, is_aktiv) values (2, 'Produkt2', 250, true);
 insert into Produkt_Stammdaten(id, name, preis, is_aktiv) values (3, 'Produkt3', 500, false);
 insert into Produkt_Stammdaten(id, name, preis, is_aktiv) values (4, 'Produkt4', 1000, true);
+
+insert into Adresse(ID, LAND, ORT, STRASSE, HAUS_NR, ADRESSE_ART, KUNDE_ID) VALUES(1, 'Polska' ,'Warszawa', 'Solidarnosci', '54a', 'MA', 1);
+insert into Adresse(ID, LAND, ORT, STRASSE, HAUS_NR, ADRESSE_ART, KUNDE_ID) VALUES(2, 'Polska','Rzeszow', 'Siemiradzkiego', '76', 'PA', 1);
+
+insert into Adresse(ID, LAND, ORT, STRASSE, HAUS_NR, ADRESSE_ART, KUNDE_ID) VALUES(3, 'Deutschland', 'Nürnberg', 'Lange Str.', '11b', 'MA', 2);
+insert into Adresse(ID, LAND, ORT, STRASSE, HAUS_NR, ADRESSE_ART, KUNDE_ID) VALUES(4, 'Deutschland', 'München', 'Kurze Str.', '13', 'PA', 2);
+
+insert into Adresse(ID, LAND, ORT, STRASSE, HAUS_NR, ADRESSE_ART, KUNDE_ID) VALUES(5, 'Polska', 'Warszawa', 'Wojska Polskiego', '11', 'MA', 3);
+insert into Adresse(ID, LAND, ORT, STRASSE, HAUS_NR, ADRESSE_ART, KUNDE_ID) VALUES(6, 'Polska', 'Krakow', 'Nowotki', '13', 'PA', 3);

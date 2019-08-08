@@ -1,6 +1,6 @@
 package de.anna.springboot.controller;
 
-import de.anna.springboot.model.ProduktStammdatenAssembler;
+import de.anna.springboot.model.assembler.ProduktStammdatenDTOProductStammdatenFormAssembler;
 import de.anna.springboot.model.dto.ProduktStammdatenDTO;
 import de.anna.springboot.model.form.ProduktStammdatenForm;
 import de.anna.springboot.service.ProduktStammdatenService;
@@ -48,7 +48,7 @@ public class ProduktStammdatenWebController {
     @PostMapping("/saveproduktstammdaten")
     public String saveProduktStammdaten(@ModelAttribute(PRODUKT_STAMMDATEN_FORM) ProduktStammdatenForm produktStammdatenForm, Model model){
 
-        ProduktStammdatenDTO produktStammdatenDTO = ProduktStammdatenAssembler.mapProduktStammdatenFormToProduktStammdatenDTO(produktStammdatenForm);
+        ProduktStammdatenDTO produktStammdatenDTO = ProduktStammdatenDTOProductStammdatenFormAssembler.mapProduktStammdatenFormToProduktStammdatenDTO(produktStammdatenForm);
         produktStammdatenService.save(produktStammdatenDTO);
 
         List<ProduktStammdatenDTO> produktStammdatenDTOList = produktStammdatenService.findAll();
@@ -70,7 +70,7 @@ public class ProduktStammdatenWebController {
         public String editProduktStammdaten(@PathVariable Long id, Model model){
 
         ProduktStammdatenDTO produktStammdatenById = produktStammdatenService.findProduktStammdatenById(id);
-        ProduktStammdatenForm produktStammdatenForm = ProduktStammdatenAssembler.mapProduktStammdatenDTOToProduktStammdatenForm(produktStammdatenById);
+        ProduktStammdatenForm produktStammdatenForm = ProduktStammdatenDTOProductStammdatenFormAssembler.mapProduktStammdatenDTOToProduktStammdatenForm(produktStammdatenById);
         model.addAttribute(PRODUKT_STAMMDATEN_FORM, produktStammdatenForm);
 
         return "editProduktStammdaten";

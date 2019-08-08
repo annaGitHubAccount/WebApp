@@ -1,6 +1,6 @@
 package de.anna.springboot.service;
 
-import de.anna.springboot.model.ProduktStammdatenAssembler;
+import de.anna.springboot.model.assembler.ProduktStammdatenProductStammdatenDTOAssembler;
 import de.anna.springboot.model.dto.ProduktStammdatenDTO;
 import de.anna.springboot.model.entity.ProduktStammdaten;
 import de.anna.springboot.repository.ProduktStammdatenRepository;
@@ -22,7 +22,7 @@ public class ProduktStammdatenServiceImpl implements ProduktStammdatenService {
     @Transactional
     public void save(ProduktStammdatenDTO produktStammdatenDTO) {
 
-        ProduktStammdaten produktStammdaten = ProduktStammdatenAssembler.mapProduktStammdatenDTOToProduktStammdaten(produktStammdatenDTO);
+        ProduktStammdaten produktStammdaten = ProduktStammdatenProductStammdatenDTOAssembler.mapProduktStammdatenDTOToProduktStammdaten(produktStammdatenDTO);
         produktStammdatenRepository.save(produktStammdaten);
     }
 
@@ -33,7 +33,7 @@ public class ProduktStammdatenServiceImpl implements ProduktStammdatenService {
         List<ProduktStammdatenDTO> produktStammdatenDTOList = new ArrayList<>();
 
         for(ProduktStammdaten produktStammdaten : produktStammdatenArrayList) {
-            ProduktStammdatenDTO produktStammdatenDTO = ProduktStammdatenAssembler.mapProduktStammdatenToProduktStammdatenDTO(produktStammdaten);
+            ProduktStammdatenDTO produktStammdatenDTO = ProduktStammdatenProductStammdatenDTOAssembler.mapProduktStammdatenToProduktStammdatenDTO(produktStammdaten);
             produktStammdatenDTOList.add(produktStammdatenDTO);
         }
 
@@ -47,7 +47,7 @@ public class ProduktStammdatenServiceImpl implements ProduktStammdatenService {
 
         ProduktStammdatenDTO produktStammdatenDTO = null;
         if(produktStammdaten.isPresent()) {
-            produktStammdatenDTO = ProduktStammdatenAssembler.mapProduktStammdatenToProduktStammdatenDTO(produktStammdaten.get());
+            produktStammdatenDTO = ProduktStammdatenProductStammdatenDTOAssembler.mapProduktStammdatenToProduktStammdatenDTO(produktStammdaten.get());
         }
 
         return produktStammdatenDTO;
@@ -71,7 +71,7 @@ public class ProduktStammdatenServiceImpl implements ProduktStammdatenService {
         List<ProduktStammdatenDTO> produktStammdatenDTOList = new ArrayList<>();
 
         for(ProduktStammdaten produktStammdaten : produktStammdatenByNameList) {
-            ProduktStammdatenDTO produktStammdatenDTO = ProduktStammdatenAssembler.mapProduktStammdatenToProduktStammdatenDTO(produktStammdaten);
+            ProduktStammdatenDTO produktStammdatenDTO = ProduktStammdatenProductStammdatenDTOAssembler.mapProduktStammdatenToProduktStammdatenDTO(produktStammdaten);
             produktStammdatenDTOList.add(produktStammdatenDTO);
         }
 

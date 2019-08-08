@@ -1,6 +1,6 @@
 package de.anna.springboot.controller;
 
-import de.anna.springboot.model.KundeAssembler;
+import de.anna.springboot.model.assembler.KundeDTOKundeFormAssembler;
 import de.anna.springboot.model.dto.KundeDTO;
 import de.anna.springboot.model.enums.KundeArt;
 import de.anna.springboot.model.form.KundeForm;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -72,7 +71,7 @@ public class KundeWebController {
     @PostMapping("/savekunde")
     public String saveKunde(@ModelAttribute(KUNDE_FORM) KundeForm kundeForm, Model model) {
 
-        KundeDTO kundeDTO = KundeAssembler.mapKundeFormToKundeDTO(kundeForm);
+        KundeDTO kundeDTO = KundeDTOKundeFormAssembler.mapKundeFormToKundeDTO(kundeForm);
         kundeService.save(kundeDTO);
 
         List<KundeDTO> kundeDTOList = kundeService.findAll();
@@ -96,7 +95,7 @@ public class KundeWebController {
     public String editKunde(@PathVariable Long id, Model model) {
 
         KundeDTO kundeDTOById = kundeService.findKundeById(id);
-        KundeForm kundeForm = KundeAssembler.mapKundeDTOToKundeForm(kundeDTOById);
+        KundeForm kundeForm = KundeDTOKundeFormAssembler.mapKundeDTOToKundeForm(kundeDTOById);
 
         Map<String, String> kundeArtMap = KundeArt.convertKundeArtEnumToMap();
         model.addAttribute("kundeArtMap", kundeArtMap);
