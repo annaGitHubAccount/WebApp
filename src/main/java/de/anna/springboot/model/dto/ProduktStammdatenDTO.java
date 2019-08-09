@@ -1,5 +1,7 @@
 package de.anna.springboot.model.dto;
 
+import de.anna.springboot.model.enums.ProduktArt;
+
 import java.math.BigDecimal;
 
 public class ProduktStammdatenDTO {
@@ -12,7 +14,7 @@ public class ProduktStammdatenDTO {
 
     private boolean aktiv;
 
-    private String aktivStr;
+    private ProduktArt produktArt;
 
 
     public ProduktStammdatenDTO() {
@@ -50,4 +52,11 @@ public class ProduktStammdatenDTO {
         this.aktiv = aktiv;
     }
 
+    public ProduktArt getProduktArt() {
+        return produktArt;
+    }
+
+    public void setProduktArt(ProduktArt produktArt) {
+        this.produktArt = produktArt;
+    }
 }

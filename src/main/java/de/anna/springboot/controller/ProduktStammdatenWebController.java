@@ -2,6 +2,7 @@ package de.anna.springboot.controller;
 
 import de.anna.springboot.model.assembler.ProduktStammdatenDTOProductStammdatenFormAssembler;
 import de.anna.springboot.model.dto.ProduktStammdatenDTO;
+import de.anna.springboot.model.enums.ProduktArt;
 import de.anna.springboot.model.form.ProduktStammdatenForm;
 import de.anna.springboot.service.ProduktStammdatenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/web")
@@ -27,6 +29,10 @@ public class ProduktStammdatenWebController {
     public String addProduktStammdaten(Model model) {
 
         model.addAttribute(PRODUKT_STAMMDATEN_FORM, new ProduktStammdatenForm());
+
+        Map<String, String> produktArtEnumMap = ProduktArt.convertProduktArtEnumToMap();
+        model.addAttribute("produktArtMap", produktArtEnumMap);
+
         return "addProduktStammdaten";
     }
 
@@ -35,12 +41,20 @@ public class ProduktStammdatenWebController {
 
         if (resultOfValidation.hasErrors()) {
 
+            Map<String, String> produktArtEnumMap = ProduktArt.convertProduktArtEnumToMap();
+            model.addAttribute("produktArtMap", produktArtEnumMap);
+
             model.addAttribute(PRODUKT_STAMMDATEN_FORM, produktStammdatenForm);
+
             return "addProduktStammdaten";
 
         } else {
 
+            Map<String, String> produktArtEnumMap = ProduktArt.convertProduktArtEnumToMap();
+            model.addAttribute("produktArtMap", produktArtEnumMap);
+
             model.addAttribute(PRODUKT_STAMMDATEN_FORM, produktStammdatenForm);
+
             return "produktStammdatenWeiterleiten";
         }
     }
@@ -69,6 +83,9 @@ public class ProduktStammdatenWebController {
     @GetMapping("/editproduktstammdaten/{id}")
         public String editProduktStammdaten(@PathVariable Long id, Model model){
 
+        Map<String, String> produktArtEnumMap = ProduktArt.convertProduktArtEnumToMap();
+        model.addAttribute("produktArtMap", produktArtEnumMap);
+
         ProduktStammdatenDTO produktStammdatenById = produktStammdatenService.findProduktStammdatenById(id);
         ProduktStammdatenForm produktStammdatenForm = ProduktStammdatenDTOProductStammdatenFormAssembler.mapProduktStammdatenDTOToProduktStammdatenForm(produktStammdatenById);
         model.addAttribute(PRODUKT_STAMMDATEN_FORM, produktStammdatenForm);
@@ -78,6 +95,9 @@ public class ProduktStammdatenWebController {
 
     @PostMapping("/produktstammdatenweiterleitenedit")
     public String produktStammdatenWeiterleitenEdit(@ModelAttribute(PRODUKT_STAMMDATEN_FORM) ProduktStammdatenForm produktStammdatenForm, Model model){
+
+        Map<String, String> produktArtEnumMap = ProduktArt.convertProduktArtEnumToMap();
+        model.addAttribute("produktArtMap", produktArtEnumMap);
 
         model.addAttribute(PRODUKT_STAMMDATEN_FORM, produktStammdatenForm);
         return "produktStammdatenWeiterleitenEdit";

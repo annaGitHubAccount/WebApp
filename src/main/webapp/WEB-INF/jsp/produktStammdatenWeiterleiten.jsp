@@ -26,6 +26,11 @@
             </td>
         </tr>
         <tr>
+            <td>Produkt Art :</td>
+            <td>${produktStammdatenForm.produktArt}</td>
+        </tr>
+
+        <tr>
             <td></td>
             <td><input type="submit" value="Save" class="ui button"/></td>
         </tr>
@@ -34,5 +39,6 @@
     <form:hidden path="name"/>
     <form:hidden path="preis"/>
     <form:hidden path="aktiv"/>
+    <form:hidden path="produktArt"/>
 
 </form:form>

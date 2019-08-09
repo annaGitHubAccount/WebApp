@@ -1,5 +1,7 @@
 package de.anna.springboot.model.entity;
 
+import de.anna.springboot.model.enums.ProduktArt;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
@@ -21,6 +23,9 @@ public class ProduktStammdaten {
 
     @Column(name = "IS_AKTIV")
     private boolean aktiv;
+
+    @Column(name = "PRODUKT_ART")
+    private ProduktArt produktArt;
 
 
     public ProduktStammdaten() {
@@ -57,5 +62,13 @@ public class ProduktStammdaten {
 
     public void setAktiv(boolean aktiv) {
         this.aktiv = aktiv;
+    }
+
+    public ProduktArt getProduktArt() {
+        return produktArt;
+    }
+
+    public void setProduktArt(ProduktArt produktArt) {
+        this.produktArt = produktArt;
     }
 }

@@ -39,6 +39,16 @@
             </td>
         </tr>
         <tr>
+            <td>Produkt Art :</td>
+            <td>
+                <form:radiobuttons path="produktArt" items="${produktArtMap}" cssClass="ui radio checkbox"/>
+            </td>
+            <td>
+                <form:errors path="produktArt" cssClass="error"/>
+            </td>
+        </tr>
+
+        <tr>
             <td></td>
             <td><input type="submit" value="Save" class="ui button"/></td>
         </tr>

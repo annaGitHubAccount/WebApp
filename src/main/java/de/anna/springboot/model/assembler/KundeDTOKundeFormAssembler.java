@@ -52,13 +52,15 @@ public final class KundeDTOKundeFormAssembler {
         adresseVonMeldeanschrift.setAdresseArt(AdresseArt.MELDEANSCHRIFT);
         adresseDTOList.add(adresseVonMeldeanschrift);
 
-        AdresseDTO adresseVonPostanschrift = new AdresseDTO();
-        adresseVonPostanschrift.setLand(kundeForm.getLandVonPostanschrift());
-        adresseVonPostanschrift.setOrt(kundeForm.getOrtVonPostanschrift());
-        adresseVonPostanschrift.setStrasse(kundeForm.getStrasseVonPostanschrift());
-        adresseVonPostanschrift.setHausNr(kundeForm.getHausNrVonPostanschrift());
-        adresseVonPostanschrift.setAdresseArt(AdresseArt.POSTANSCHRIFT);
-        adresseDTOList.add(adresseVonPostanschrift);
+        if(kundeForm.getLandVonPostanschrift() != null && !kundeForm.getLandVonPostanschrift().equals("")) {
+            AdresseDTO adresseVonPostanschrift = new AdresseDTO();
+            adresseVonPostanschrift.setLand(kundeForm.getLandVonPostanschrift());
+            adresseVonPostanschrift.setOrt(kundeForm.getOrtVonPostanschrift());
+            adresseVonPostanschrift.setStrasse(kundeForm.getStrasseVonPostanschrift());
+            adresseVonPostanschrift.setHausNr(kundeForm.getHausNrVonPostanschrift());
+            adresseVonPostanschrift.setAdresseArt(AdresseArt.POSTANSCHRIFT);
+            adresseDTOList.add(adresseVonPostanschrift);
+        }
 
         return adresseDTOList;
     }

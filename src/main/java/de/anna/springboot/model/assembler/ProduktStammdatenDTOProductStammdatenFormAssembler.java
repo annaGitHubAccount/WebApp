@@ -1,6 +1,7 @@
 package de.anna.springboot.model.assembler;
 
 import de.anna.springboot.model.dto.ProduktStammdatenDTO;
+import de.anna.springboot.model.enums.ProduktArt;
 import de.anna.springboot.model.form.ProduktStammdatenForm;
 
 public final class ProduktStammdatenDTOProductStammdatenFormAssembler {
@@ -16,8 +17,11 @@ public final class ProduktStammdatenDTOProductStammdatenFormAssembler {
         produktStammdatenDTO.setId(produktStammdatenForm.getId());
         produktStammdatenDTO.setName(produktStammdatenForm.getName());
         produktStammdatenDTO.setPreis(produktStammdatenForm.getPreis());
-
         produktStammdatenDTO.setAktiv(produktStammdatenForm.isAktiv());
+
+        String produktArtAlsString = produktStammdatenForm.getProduktArt();
+        ProduktArt produktArt = ProduktArt.convertStringToProduktArt(produktArtAlsString);
+        produktStammdatenDTO.setProduktArt(produktArt);
 
         return produktStammdatenDTO;
     }
@@ -31,6 +35,10 @@ public final class ProduktStammdatenDTOProductStammdatenFormAssembler {
         produktStammdatenForm.setName(produktStammdatenDTO.getName());
         produktStammdatenForm.setPreis(produktStammdatenDTO.getPreis());
         produktStammdatenForm.setAktiv(produktStammdatenDTO.isAktiv());
+
+        ProduktArt produktArt = produktStammdatenDTO.getProduktArt();
+        String produktArtAlsString = ProduktArt.convertProduktArtToString(produktArt);
+        produktStammdatenForm.setProduktArt(produktArtAlsString);
 
         return produktStammdatenForm;
     }

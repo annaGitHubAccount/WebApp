@@ -4,11 +4,14 @@ import de.anna.springboot.model.assembler.KundeDTOKundeFormAssembler;
 import de.anna.springboot.model.dto.KundeDTO;
 import de.anna.springboot.model.enums.KundeArt;
 import de.anna.springboot.model.form.KundeForm;
+import de.anna.springboot.model.validator.KundeFormValidator;
 import de.anna.springboot.service.KundeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
@@ -25,6 +28,14 @@ public class KundeWebController {
 
     @Autowired
     KundeService kundeService;
+
+    @Autowired
+    private KundeFormValidator kundeFormValidator;
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.addValidators(kundeFormValidator);
+    }
 
 
     @GetMapping({"/", "/homepage"})
@@ -47,7 +58,7 @@ public class KundeWebController {
 
 
     @PostMapping("/kundeweiterleiten")
-    public String kundeWeiterleiten(Model model, @Valid @ModelAttribute(KUNDE_FORM) KundeForm kundeForm, BindingResult resultOfValidation) {
+    public String kundeWeiterleiten(Model model, @Valid @Validated @ModelAttribute(KUNDE_FORM) KundeForm kundeForm, BindingResult resultOfValidation) {
 
         if (resultOfValidation.hasErrors()) {
 

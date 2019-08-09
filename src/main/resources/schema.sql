@@ -29,7 +29,8 @@ create table Produkt_Stammdaten
   id    long primary key auto_increment not null,
   name     varchar(50)  not null,
   preis    decimal(20)  not null,
-  is_aktiv   boolean not null
+  is_aktiv   boolean not null,
+  PRODUKT_ART varchar(50)
 );
 
 create table Adresse

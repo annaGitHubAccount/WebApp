@@ -18,6 +18,8 @@ public class ProduktStammdatenForm {
 
     private boolean aktiv;
 
+    private String produktArt;
+
 
 
     public Long getId() {
@@ -50,5 +52,13 @@ public class ProduktStammdatenForm {
 
     public void setAktiv(boolean aktiv) {
         this.aktiv = aktiv;
+    }
+
+    public String getProduktArt() {
+        return produktArt;
+    }
+
+    public void setProduktArt(String produktArt) {
+        this.produktArt = produktArt;
     }
 }

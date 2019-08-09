@@ -118,11 +118,17 @@
                                 <td>
                                     <div class="ui input"><form:input path="landVonPostanschrift"/></div>
                                 </td>
+                                <td>
+                                    <form:errors path="landVonPostanschrift" cssClass="error"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Ort :</td>
                                 <td>
                                     <div class="ui input"><form:input path="ortVonPostanschrift"/></div>
+                                </td>
+                                <td>
+                                    <form:errors path="ortVonPostanschrift" cssClass="error"/>
                                 </td>
                             </tr>
                             <tr>
@@ -130,11 +136,17 @@
                                 <td>
                                     <div class="ui input"><form:input path="strasseVonPostanschrift"/></div>
                                 </td>
+                                <td>
+                                    <form:errors path="strasseVonPostanschrift" cssClass="error"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Haus Nr. :</td>
                                 <td>
                                     <div class="ui input"><form:input path="hausNrVonPostanschrift"/></div>
+                                </td>
+                                <td>
+                                    <form:errors path="hausNrVonPostanschrift" cssClass="error"/>
                                 </td>
                             </tr>
                         </table>
