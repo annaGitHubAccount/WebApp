@@ -1,6 +1,6 @@
 package de.anna.springboot.model.enums;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public enum ProduktArt {
@@ -40,7 +40,7 @@ public enum ProduktArt {
 
     public static Map<String, String> convertProduktArtEnumToMap() {
 
-        Map<String, String> produktArtMap = new HashMap<>();
+        Map<String, String> produktArtMap = new LinkedHashMap<>();
         ProduktArt[] produktArts = values();
 
         for(ProduktArt produktArt : produktArts){
