@@ -115,9 +115,13 @@
                     <div id="postanschrift">
                         <table>
                             <tr>
+                                <td><label for="checkboxPostanschriftID">Aktiviere Postanschrift:</label></td>
+                                <td><input type="checkbox" id="checkboxPostanschriftID"></td>
+                            </tr>
+                            <tr>
                                 <td>Land :</td>
                                 <td>
-                                    <div class="ui input"><form:input path="landVonPostanschrift"/></div>
+                                    <div class="ui input"><form:input path="landVonPostanschrift" id="landVonPostanschriftID" disabled="true"/></div>
                                 </td>
                                 <td>
                                     <form:errors path="landVonPostanschrift" cssClass="error"/>
@@ -126,7 +130,7 @@
                             <tr>
                                 <td>Ort :</td>
                                 <td>
-                                    <div class="ui input"><form:input path="ortVonPostanschrift"/></div>
+                                    <div class="ui input"><form:input path="ortVonPostanschrift" id="ortVonPostanschriftID" disabled="true"/></div>
                                 </td>
                                 <td>
                                     <form:errors path="ortVonPostanschrift" cssClass="error"/>
@@ -135,7 +139,7 @@
                             <tr>
                                 <td>Strasse :</td>
                                 <td>
-                                    <div class="ui input"><form:input path="strasseVonPostanschrift"/></div>
+                                    <div class="ui input"><form:input path="strasseVonPostanschrift" id="strasseVonPostanschriftID" disabled="true" /></div>
                                 </td>
                                 <td>
                                     <form:errors path="strasseVonPostanschrift" cssClass="error"/>
@@ -144,7 +148,7 @@
                             <tr>
                                 <td>Haus Nr. :</td>
                                 <td>
-                                    <div class="ui input"><form:input path="hausNrVonPostanschrift"/></div>
+                                    <div class="ui input"><form:input path="hausNrVonPostanschrift" id="hausNrVonPostanschriftID" disabled="true" /></div>
                                 </td>
                                 <td>
                                     <form:errors path="hausNrVonPostanschrift" cssClass="error"/>
@@ -166,3 +170,23 @@
     </table>
 
 </form:form>
+
+<script>
+
+    var checkbox = document.getElementById("checkboxPostanschriftID");
+
+    checkbox.addEventListener("change", function () {
+
+        if(checkbox.checked){
+            document.getElementById("landVonPostanschriftID").disabled = false;
+            document.getElementById("ortVonPostanschriftID").disabled = false;
+            document.getElementById("strasseVonPostanschriftID").disabled = false;
+            document.getElementById("hausNrVonPostanschriftID").disabled = false;
+        }else {
+            document.getElementById("landVonPostanschriftID").disabled = true;
+            document.getElementById("ortVonPostanschriftID").disabled = true;
+            document.getElementById("strasseVonPostanschriftID").disabled = true;
+            document.getElementById("hausNrVonPostanschriftID").disabled = true;
+        }
+    });
+</script>
