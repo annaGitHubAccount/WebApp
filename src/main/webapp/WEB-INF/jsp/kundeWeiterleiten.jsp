@@ -1,15 +1,16 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <h1>Wollen Sie wirklich die Daten von dem Kunden speichern?</h1>
 
 <form:form method="post" modelAttribute="kundeForm" action="/web/savekunde">
-    <table >
+    <table>
         <tr>
-            <td>Steuer ID : </td>
+            <td>Steuer ID :</td>
             <td>${kundeForm.steuerId}</td>
         </tr>
         <tr>
-            <td>Name : </td>
+            <td>Name :</td>
             <td>${kundeForm.name}</td>
         </tr>
         <tr>
@@ -73,8 +74,25 @@
 
 
         <tr>
-            <td> </td>
-            <td><input type="submit" value="Save" class="ui button"/></td>
+            <td>
+                <h1>Ausgewaehle Produkte :</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <c:forEach items="${kundeForm.produktList}" var="produkt">
+
+                    <ul>
+                        <li>${produkt.name}</li>
+                    </ul>
+
+                </c:forEach>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2"><input type="submit" value="Save" class="ui button"/></td>
         </tr>
     </table>
 

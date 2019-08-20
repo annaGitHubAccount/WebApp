@@ -1,10 +1,9 @@
 package de.anna.springboot.model.dto;
 
 import de.anna.springboot.model.enums.ProduktArt;
-
 import java.math.BigDecimal;
 
-public class ProduktStammdatenDTO {
+public class ProduktDTO {
 
     private Long id;
 
@@ -18,8 +17,10 @@ public class ProduktStammdatenDTO {
 
     private ProduktArt produktArt;
 
+    private KundeDTO kundeDTO;
 
-    public ProduktStammdatenDTO() {
+
+    public ProduktDTO() {
     }
 
     public Long getId() {
@@ -60,6 +61,14 @@ public class ProduktStammdatenDTO {
 
     public void setProduktArt(ProduktArt produktArt) {
         this.produktArt = produktArt;
+    }
+
+    public KundeDTO getKundeDTO() {
+        return kundeDTO;
+    }
+
+    public void setKundeDTO(KundeDTO kundeDTO) {
+        this.kundeDTO = kundeDTO;
     }
 
     public String getSymbol() {

@@ -1,11 +1,16 @@
 package de.anna.springboot.model.form;
 
-import de.anna.springboot.model.dto.KundeDTO;
+import de.anna.springboot.model.dto.ProduktDTO;
+import de.anna.springboot.model.dto.ProduktStammdatenDTO;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class KundeForm {
 
@@ -25,6 +30,8 @@ public class KundeForm {
 
     @Pattern(regexp = "^\\s*(3[01]|[12][0-9]|0[1-9])\\.(1[012]|0[1-9])\\.((?:19|20)\\d{2})\\s*$", message = "{birthDate.hatKeinErforderlichesFormat}")
     private String birthDate;
+
+    private Map<String, String> kundeArtMap = new LinkedHashMap<>();
 
     private String kundeArt;
 
@@ -49,7 +56,13 @@ public class KundeForm {
     private String strasseVonPostanschrift;
     private String hausNrVonPostanschrift;
 
+    private List<ProduktStammdatenDTO> produktStammdatenList = new ArrayList<>();
+    private List<String> produktStammdatenGewaehlteList = new ArrayList<>();
 
+    private List<ProduktDTO> produktList = new ArrayList<>();
+    private List<String> produktGewaehlteList = new ArrayList<>();
+
+    private String welcherButton;
 
 
     public String getName() {
@@ -90,14 +103,6 @@ public class KundeForm {
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
-    }
-
-    public String getKundeArt() {
-        return kundeArt;
-    }
-
-    public void setKundeArt(String kundeArt) {
-        this.kundeArt = kundeArt;
     }
 
     public String getLandVonMeldeanschrift() {
@@ -164,5 +169,59 @@ public class KundeForm {
         this.hausNrVonPostanschrift = hausNrVonPostanschrift;
     }
 
+    public Map<String, String> getKundeArtMap() {
+        return kundeArtMap;
+    }
 
+    public void setKundeArtMap(Map<String, String> kundeArtMap) {
+        this.kundeArtMap = kundeArtMap;
+    }
+
+    public String getKundeArt() {
+        return kundeArt;
+    }
+
+    public void setKundeArt(String kundeArt) {
+        this.kundeArt = kundeArt;
+    }
+
+    public List<ProduktStammdatenDTO> getProduktStammdatenList() {
+        return produktStammdatenList;
+    }
+
+    public void setProduktStammdatenList(List<ProduktStammdatenDTO> produktStammdatenList) {
+        this.produktStammdatenList = produktStammdatenList;
+    }
+
+    public List<String> getProduktStammdatenGewaehlteList() {
+        return produktStammdatenGewaehlteList;
+    }
+
+    public void setProduktStammdatenGewaehlteList(List<String> produktStammdatenGewaehlteList) {
+        this.produktStammdatenGewaehlteList = produktStammdatenGewaehlteList;
+    }
+
+    public List<ProduktDTO> getProduktList() {
+        return produktList;
+    }
+
+    public void setProduktList(List<ProduktDTO> produktList) {
+        this.produktList = produktList;
+    }
+
+    public List<String> getProduktGewaehlteList() {
+        return produktGewaehlteList;
+    }
+
+    public void setProduktGewaehlteList(List<String> produktGewaehlteList) {
+        this.produktGewaehlteList = produktGewaehlteList;
+    }
+
+    public String getWelcherButton() {
+        return welcherButton;
+    }
+
+    public void setWelcherButton(String welcherButton) {
+        this.welcherButton = welcherButton;
+    }
 }

@@ -12,17 +12,13 @@ public class AdresseArtConverter implements AttributeConverter<AdresseArt, Strin
         if(adresseArt == null){
             return null;
         }
+
         return adresseArt.getKode();
     }
 
     @Override
-    public AdresseArt convertToEntityAttribute(String adresseArtByKode) {
+    public AdresseArt convertToEntityAttribute(String adresseArtKode) {
 
-        if(adresseArtByKode == null){
-            return null;
-        }
-
-        return AdresseArt.convertToAdresseArtByKode(adresseArtByKode);
+        return AdresseArt.convertToAdresseArtByKode(adresseArtKode);
     }
-
 }

@@ -1,8 +1,6 @@
 package de.anna.springboot.model.dto;
 
-import de.anna.springboot.model.entity.Adresse;
 import de.anna.springboot.model.enums.KundeArt;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,6 +19,8 @@ public class KundeDTO {
     private KundeArt kundeArt;
 
     private List<AdresseDTO> adresseList;
+
+    private List<ProduktDTO> produktDTOList;
 
 
     public KundeDTO(String name, String nachname) {
@@ -92,5 +92,13 @@ public class KundeDTO {
 
     public void setAdresseList(List<AdresseDTO> adresseList) {
         this.adresseList = adresseList;
+    }
+
+    public List<ProduktDTO> getProduktDTOList() {
+        return produktDTOList;
+    }
+
+    public void setProduktDTOList(List<ProduktDTO> produktDTOList) {
+        this.produktDTOList = produktDTOList;
     }
 }

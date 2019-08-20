@@ -1,6 +1,7 @@
 package de.anna.springboot.service;
 
 import de.anna.springboot.model.dto.KundeDTO;
+import de.anna.springboot.model.dto.ProduktDTO;
 
 import java.util.List;
 

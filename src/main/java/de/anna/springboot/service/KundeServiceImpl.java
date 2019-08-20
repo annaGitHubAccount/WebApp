@@ -1,12 +1,16 @@
 package de.anna.springboot.service;
 
 import de.anna.springboot.model.assembler.KundeKundeDTOAssembler;
+import de.anna.springboot.model.assembler.ProduktProduktDTOAssembler;
 import de.anna.springboot.model.dto.KundeDTO;
+import de.anna.springboot.model.dto.ProduktDTO;
 import de.anna.springboot.model.entity.Kunde;
+import de.anna.springboot.model.entity.Produkt;
 import de.anna.springboot.repository.KundeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

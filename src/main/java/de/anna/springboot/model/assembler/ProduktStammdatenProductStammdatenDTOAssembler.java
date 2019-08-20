@@ -18,6 +18,7 @@ public final class ProduktStammdatenProductStammdatenDTOAssembler {
         produktStammdatenDTO.setPreis(produktStammdaten.getPreis());
         produktStammdatenDTO.setAktiv(produktStammdaten.isAktiv());
         produktStammdatenDTO.setProduktArt(produktStammdaten.getProduktArt());
+        produktStammdatenDTO.setSymbol(produktStammdaten.getSymbol());
 
         return produktStammdatenDTO;
     }
@@ -32,6 +33,7 @@ public final class ProduktStammdatenProductStammdatenDTOAssembler {
         produktStammdaten.setPreis(produktStammdatenDTO.getPreis());
         produktStammdaten.setAktiv(produktStammdatenDTO.isAktiv());
         produktStammdaten.setProduktArt(produktStammdatenDTO.getProduktArt());
+        produktStammdaten.setSymbol(produktStammdatenDTO.getSymbol());
 
         return produktStammdaten;
     }

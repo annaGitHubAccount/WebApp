@@ -2,6 +2,7 @@ package de.anna.springboot.model.assembler;
 
 import de.anna.springboot.model.dto.AdresseDTO;
 import de.anna.springboot.model.dto.KundeDTO;
+import de.anna.springboot.model.dto.ProduktDTO;
 import de.anna.springboot.model.enums.AdresseArt;
 import de.anna.springboot.model.enums.KundeArt;
 import de.anna.springboot.model.form.KundeForm;
@@ -36,6 +37,13 @@ public final class KundeDTOKundeFormAssembler {
 
         List<AdresseDTO> adresseDTOList = convertKundeFormAdresseToKundeDTOAdresse(kundeForm);
         kundeDTO.setAdresseList(adresseDTOList);
+
+        kundeDTO.setProduktDTOList(kundeForm.getProduktList());
+
+        List<ProduktDTO> produktListFromForm = kundeForm.getProduktList();
+        for(ProduktDTO produktDTO : produktListFromForm){
+            produktDTO.setKundeDTO(kundeDTO);
+        }
 
         return kundeDTO;
     }
@@ -80,6 +88,8 @@ public final class KundeDTOKundeFormAssembler {
         kundeForm.setKundeArt(kundeDTO.getKundeArt().toString());
 
         kundeForm = convertKundeDTOAdresseToKundeFormAdresse(kundeDTO, kundeForm);
+
+        kundeForm.setProduktList(kundeDTO.getProduktDTOList());
 
         return kundeForm;
     }

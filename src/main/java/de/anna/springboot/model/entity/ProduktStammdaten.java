@@ -15,6 +15,8 @@ public class ProduktStammdaten {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String symbol;
+
     private String name;
 
     // Precision is the total number of digits. Scale is the number of digits after the decimal point.
@@ -70,5 +72,13 @@ public class ProduktStammdaten {
 
     public void setProduktArt(ProduktArt produktArt) {
         this.produktArt = produktArt;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 }

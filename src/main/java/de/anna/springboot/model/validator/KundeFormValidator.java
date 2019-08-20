@@ -18,14 +18,14 @@ public class KundeFormValidator implements Validator {
     @Override
     public void validate(Object object, Errors errors) {
 
-       KundeForm kundeForm = (KundeForm) object;
+        KundeForm kundeForm = (KundeForm) object;
 
         if (
-                !StringUtils.isEmpty(kundeForm.getLandVonPostanschrift()) ||
-                !StringUtils.isEmpty(kundeForm.getOrtVonPostanschrift()) ||
-                !StringUtils.isEmpty(kundeForm.getHausNrVonPostanschrift()) ||
-                !StringUtils.isEmpty(kundeForm.getStrasseVonPostanschrift())
-        ){
+                        !StringUtils.isEmpty(kundeForm.getLandVonPostanschrift()) ||
+                        !StringUtils.isEmpty(kundeForm.getHausNrVonPostanschrift()) ||
+                        !StringUtils.isEmpty(kundeForm.getOrtVonPostanschrift()) ||
+                        !StringUtils.isEmpty(kundeForm.getStrasseVonPostanschrift())
+        ) {
 
             ValidationUtils.rejectIfEmpty(errors, "landVonPostanschrift", "feld.isErfordelich");
             ValidationUtils.rejectIfEmpty(errors, "ortVonPostanschrift", "feld.isErfordelich");
@@ -33,6 +33,4 @@ public class KundeFormValidator implements Validator {
             ValidationUtils.rejectIfEmpty(errors, "hausNrVonPostanschrift", "feld.isErfordelich");
         }
     }
-
 }
-

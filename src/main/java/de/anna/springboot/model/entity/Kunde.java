@@ -28,6 +28,9 @@ public class Kunde {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "kunde")
     private List<Adresse> adresseList;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "kunde")
+    private List<Produkt> produktList;
+
 
     public Kunde() {
     }
@@ -86,5 +89,13 @@ public class Kunde {
 
     public void setAdresseList(List<Adresse> adresseList) {
         this.adresseList = adresseList;
+    }
+
+    public List<Produkt> getProduktList() {
+        return produktList;
+    }
+
+    public void setProduktList(List<Produkt> produktList) {
+        this.produktList = produktList;
     }
 }

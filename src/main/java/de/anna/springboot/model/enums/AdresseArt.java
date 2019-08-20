@@ -24,7 +24,8 @@ public enum AdresseArt {
                 return adresseArt;
             }
         }
-        throw new RuntimeException("Es gibt solchen Adressekode nicht!!!");
+
+        throw new RuntimeException("Es gibt solchen AdresseArt by Kode nicht !!!");
     }
 
 

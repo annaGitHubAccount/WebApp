@@ -10,33 +10,31 @@ public final class AdresseAdresseDTOAssembler {
     private AdresseAdresseDTOAssembler() {
     }
 
-
-    public static AdresseDTO mapAdresseToAdresseDTO(Adresse adresse, KundeDTO kundeDTO){
+    public static AdresseDTO mapAdresseToAdresseDTO(Adresse adresse, KundeDTO  kundeDTO){
 
         AdresseDTO adresseDTO = new AdresseDTO();
 
-        adresseDTO.setAdresseArt(adresse.getAdresseArt());
-        adresseDTO.setHausNr(adresse.getHausNr());
-        adresseDTO.setId(adresse.getId());
         adresseDTO.setLand(adresse.getLand());
         adresseDTO.setOrt(adresse.getOrt());
+        adresseDTO.setAdresseArt(adresse.getAdresseArt());
         adresseDTO.setStrasse(adresse.getStrasse());
+        adresseDTO.setHausNr(adresse.getHausNr());
+        adresseDTO.setId(adresse.getId());
         adresseDTO.setKundeDTO(kundeDTO);
 
         return adresseDTO;
     }
 
-
     public static Adresse mapAdresseDTOToAdresse(AdresseDTO adresseDTO, Kunde kunde){
 
         Adresse adresse = new Adresse();
 
-        adresse.setAdresseArt(adresseDTO.getAdresseArt());
-        adresse.setHausNr(adresseDTO.getHausNr());
-        adresse.setId(adresseDTO.getId());
         adresse.setLand(adresseDTO.getLand());
         adresse.setOrt(adresseDTO.getOrt());
+        adresse.setAdresseArt(adresseDTO.getAdresseArt());
         adresse.setStrasse(adresseDTO.getStrasse());
+        adresse.setHausNr(adresseDTO.getHausNr());
+        adresse.setId(adresseDTO.getId());
         adresse.setKunde(kunde);
 
         return adresse;
