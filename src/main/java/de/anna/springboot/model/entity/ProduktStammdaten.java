@@ -5,6 +5,7 @@ import de.anna.springboot.model.enums.ProduktArt;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 @Table(name = "PRODUKT_STAMMDATEN")
@@ -33,6 +34,18 @@ public class ProduktStammdaten {
     public ProduktStammdaten() {
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProduktStammdaten)) return false;
+        ProduktStammdaten that = (ProduktStammdaten) o;
+        return getSymbol().equals(that.getSymbol());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSymbol());
+    }
 
     public Long getId() {
         return id;

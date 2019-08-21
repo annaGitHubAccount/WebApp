@@ -3,6 +3,7 @@ package de.anna.springboot.model.entity;
 import de.anna.springboot.model.enums.ProduktArt;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 public class Produkt {
@@ -32,6 +33,18 @@ public class Produkt {
     public Produkt() {
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Produkt)) return false;
+        Produkt produkt = (Produkt) o;
+        return getSymbol().equals(produkt.getSymbol());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSymbol());
+    }
 
     public Long getId() {
         return id;

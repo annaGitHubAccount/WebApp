@@ -30,9 +30,9 @@ public final class KundeDTOKundeFormAssembler {
         LocalDate localDate = DateUtils.stringToLocalDate(kundeForm.getBirthDate());
         kundeDTO.setBirthDate(localDate);
 
-        String kundeArtByText = kundeForm.getKundeArt();
+        String kundeArtByCode = kundeForm.getKundeArt();
 
-        KundeArt kundeArt = KundeArt.convertToKundeArtByText(kundeArtByText);
+        KundeArt kundeArt = KundeArt.convertToKundeArtByCode(kundeArtByCode);
         kundeDTO.setKundeArt(kundeArt);
 
         List<AdresseDTO> adresseDTOList = convertKundeFormAdresseToKundeDTOAdresse(kundeForm);

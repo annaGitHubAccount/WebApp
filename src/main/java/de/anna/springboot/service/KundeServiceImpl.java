@@ -1,12 +1,11 @@
 package de.anna.springboot.service;
 
 import de.anna.springboot.model.assembler.KundeKundeDTOAssembler;
-import de.anna.springboot.model.assembler.ProduktProduktDTOAssembler;
 import de.anna.springboot.model.dto.KundeDTO;
-import de.anna.springboot.model.dto.ProduktDTO;
 import de.anna.springboot.model.entity.Kunde;
 import de.anna.springboot.model.entity.Produkt;
 import de.anna.springboot.repository.KundeRepository;
+import de.anna.springboot.repository.ProduktRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +18,10 @@ import java.util.Optional;
 public class KundeServiceImpl implements KundeService {
 
     @Autowired
-    KundeRepository kundeRepository;
+    private KundeRepository kundeRepository;
+
+    @Autowired
+    private ProduktRepository produktRepository;
 
 
     @Override
@@ -37,13 +39,28 @@ public class KundeServiceImpl implements KundeService {
 
             if (kundeRepositoryById.isPresent()) {
                 Kunde kundeFromDatenbank = kundeRepositoryById.get();
+
+                clearKunde(kundeFromDatenbank);
+
                 Kunde kunde = KundeKundeDTOAssembler.mapKundeDTOToKunde(kundeDTO, kundeFromDatenbank);
+
                 kundeRepository.save(kunde);
             }
         }
 
 
     }
+
+    private void clearKunde(Kunde kundeFromDatenbank) {
+
+        List<Produkt> produktList = kundeFromDatenbank.getProduktList();
+
+        for(Produkt produkt : produktList){
+            produktRepository.delete(produkt);
+        }
+        produktList.clear();
+    }
+
 
     @Override
     public List<KundeDTO> findAll() {

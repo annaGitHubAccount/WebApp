@@ -2,6 +2,7 @@ package de.anna.springboot.model.entity;
 
 import de.anna.springboot.model.enums.AdresseArt;
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Adresse {
@@ -34,6 +35,23 @@ public class Adresse {
 
 
     public Adresse() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Adresse)) return false;
+        Adresse adresse = (Adresse) o;
+        return getLand().equals(adresse.getLand()) &&
+                getOrt().equals(adresse.getOrt()) &&
+                getStrasse().equals(adresse.getStrasse()) &&
+                getHausNr().equals(adresse.getHausNr()) &&
+                getAdresseArt() == adresse.getAdresseArt();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLand(), getOrt(), getStrasse(), getHausNr(), getAdresseArt());
     }
 
     public Long getId() {

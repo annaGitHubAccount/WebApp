@@ -4,7 +4,6 @@ import de.anna.springboot.model.assembler.ProduktStammdatenDTOProduktDTOAssemble
 import de.anna.springboot.model.dto.ProduktDTO;
 import de.anna.springboot.model.dto.ProduktStammdatenDTO;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -66,7 +66,6 @@ public final class KundeKundeDTOAssembler {
         }
         kunde.setAdresseList(adresseList);
 
-
         List<Produkt> produktList = new ArrayList<>();
         List<ProduktDTO> produktDTOList = kundeDTO.getProduktDTOList();
 

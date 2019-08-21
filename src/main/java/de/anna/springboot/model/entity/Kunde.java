@@ -5,6 +5,7 @@ import de.anna.springboot.model.enums.KundeArt;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Kunde {
@@ -33,6 +34,19 @@ public class Kunde {
 
 
     public Kunde() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Kunde)) return false;
+        Kunde kunde = (Kunde) o;
+        return getSteuerId().equals(kunde.getSteuerId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSteuerId());
     }
 
     public Long getId() {

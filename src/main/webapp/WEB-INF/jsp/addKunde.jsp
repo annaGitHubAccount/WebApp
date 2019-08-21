@@ -196,17 +196,20 @@
                     </tr>
 
                     <tr>
-                        <td><form:select path="produktStammdatenGewaehlteList" multiple="true" items="${kundeForm.produktStammdatenList}" itemValue="symbol" itemLabel="name"/></td>
+                        <td><form:select path="produktStammdatenGewaehlteList" multiple="true"
+                                         items="${kundeForm.produktStammdatenList}" itemValue="symbol"
+                                         itemLabel="name" size="6"/></td>
                         <td>
-                            <input type="button" value=">>" id="buttonNachRechts">
+                            <input type="button" value=">>" id="buttonNachRechts" class="ui button"/>
 
-                            <br />
-                            <br />
-                            <br />
+                            <br/>
+                            <br/>
+                            <br/>
 
-                            <input type="button" value="<<" id="buttonNachLinks">
+                            <input type="button" value="<<" id="buttonNachLinks" class="ui button"/>
                         </td>
-                        <td><form:select path="produktGewaehlteList" multiple="true" items="${kundeForm.produktList}" itemValue="symbol" itemLabel="name"/></td>
+                        <td><form:select path="produktGewaehlteList" multiple="true" items="${kundeForm.produktList}"
+                                         itemValue="symbol" itemLabel="name" size="6"/></td>
                     </tr>
 
                     <tr>

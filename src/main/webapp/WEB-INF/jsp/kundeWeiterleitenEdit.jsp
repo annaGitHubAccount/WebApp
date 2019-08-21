@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <h1>Wollen Sie wirklich die Daten von dem Kunden speichern?</h1>
 
@@ -70,6 +71,23 @@
         <tr>
             <td>Haus Nr. :</td>
             <td>${kundeForm.hausNrVonPostanschrift}</td>
+        </tr>
+
+        <tr>
+            <td>
+                <h1>Ausgewaehle Produkte :</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <c:forEach items="${kundeForm.produktList}" var="produkt">
+
+                    <ul>
+                        <li>${produkt.name}</li>
+                    </ul>
+
+                </c:forEach>
+            </td>
         </tr>
 
         <tr>
