@@ -214,8 +214,7 @@
 
                     <tr>
                         <td>
-                            <input type="button" value="Save" id="saveId" class="ui button"/>
-                            <form:hidden path="welcherButton" id="welcherButtonId"/>
+                            <input type="button" value="Weiter" id="saveId" class="ui button"/>
                         </td>
                     </tr>
 
@@ -255,7 +254,7 @@
         var buttonNachRechts = document.getElementById("buttonNachRechts");
 
         buttonNachRechts.addEventListener("click", function () {
-            document.getElementById("welcherButtonId").value = "buttonRechts";
+            document.forms[0].action = "/web/buttonnachrechts";
             document.forms[0].submit();
         });
     }
@@ -264,7 +263,7 @@
         var buttonNachLinks = document.getElementById("buttonNachLinks");
 
         buttonNachLinks.addEventListener("click", function () {
-            document.getElementById("welcherButtonId").value = "buttonLinks";
+            document.forms[0].action = "/web/buttonnachlinks";
             document.forms[0].submit();
         });
     }
@@ -273,7 +272,6 @@
         var buttonSave = document.getElementById("saveId");
 
         buttonSave.addEventListener("click", function () {
-            document.getElementById("welcherButtonId").value = "";
             document.forms[0].submit();
         });
     }

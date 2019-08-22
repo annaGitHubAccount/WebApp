@@ -25,7 +25,7 @@ public enum KundeArt {
         KundeArt[] kundeArtEnumArray = values();
 
         for (KundeArt kundeArt : kundeArtEnumArray) {
-            kundeArtMap.put(kundeArt.getKode(), kundeArt.getText());
+            kundeArtMap.put(kundeArt.getText(), kundeArt.getText());
         }
 
         return kundeArtMap;
@@ -43,7 +43,7 @@ public enum KundeArt {
         }
 
         // return null; // nieladnie zwracac null, wiec lepiej rzucic wyjatek
-        throw new RuntimeException("Es gibt solchen KundenArt by Kode nicht !!!");
+        throw new RuntimeException("Es gibt solchen KundenArt by Kode nicht: " + kundeArtByKode + " !!!");
 
     }
 

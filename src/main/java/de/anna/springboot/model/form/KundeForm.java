@@ -62,8 +62,6 @@ public class KundeForm {
     private List<ProduktDTO> produktList = new ArrayList<>();
     private List<String> produktGewaehlteList = new ArrayList<>();
 
-    private String welcherButton;
-
 
     public String getName() {
         return name;
@@ -217,11 +215,4 @@ public class KundeForm {
         this.produktGewaehlteList = produktGewaehlteList;
     }
 
-    public String getWelcherButton() {
-        return welcherButton;
-    }
-
-    public void setWelcherButton(String welcherButton) {
-        this.welcherButton = welcherButton;
-    }
 }

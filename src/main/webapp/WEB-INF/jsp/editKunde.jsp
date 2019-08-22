@@ -157,22 +157,22 @@
                                          items="${kundeForm.produktStammdatenList}" itemValue="symbol"
                                          itemLabel="name"/></td>
                         <td>
-                            <input type="button" value=">>" id="buttonNachRechts" class="ui button" />
+                            <input type="button" value=">>" id="buttonNachRechts" class="ui button"/>
 
                             <br/>
                             <br/>
                             <br/>
 
-                            <input type="button" value="<<" id="buttonNachLinks" class="ui button" />
+                            <input type="button" value="<<" id="buttonNachLinks" class="ui button"/>
                         </td>
-                        <td><form:select path="produktGewaehlteList" multiple="true" items="${kundeForm.produktList}" size="10"
+                        <td><form:select path="produktGewaehlteList" multiple="true" items="${kundeForm.produktList}"
+                                         size="10"
                                          itemValue="symbol" itemLabel="name"/></td>
                     </tr>
 
                     <tr>
                         <td>
-                            <input type="button" value="Save" id="saveId" class="ui button"/>
-                            <form:hidden path="welcherButton" id="welcherButtonId"/>
+                            <input type="button" value="Weiter" id="saveId" class="ui button"/>
                         </td>
                     </tr>
 
@@ -191,7 +191,7 @@
         var buttonNachRechts = document.getElementById("buttonNachRechts");
 
         buttonNachRechts.addEventListener("click", function () {
-            document.getElementById("welcherButtonId").value = "buttonRechts";
+            document.forms[0].action = "/web/buttonnachrechts";
             document.forms[0].submit();
         });
     }
@@ -200,7 +200,7 @@
         var buttonNachLinks = document.getElementById("buttonNachLinks");
 
         buttonNachLinks.addEventListener("click", function () {
-            document.getElementById("welcherButtonId").value = "buttonLinks";
+            document.forms[0].action = "/web/buttonnachlinks";
             document.forms[0].submit();
         });
     }
@@ -209,7 +209,6 @@
         var buttonSave = document.getElementById("saveId");
 
         buttonSave.addEventListener("click", function () {
-            document.getElementById("welcherButtonId").value = "";
             document.forms[0].submit();
         });
     }

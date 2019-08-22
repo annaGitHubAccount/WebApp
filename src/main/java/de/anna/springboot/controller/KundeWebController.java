@@ -15,10 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,92 +84,109 @@ public class KundeWebController {
 
 
     @PostMapping("/kundeweiterleiten")
-    public String kundeWeiterleiten(Model model, /*@Validated @Valid*/ @ModelAttribute(KUNDE_FORM) KundeForm kundeForm, BindingResult resultOfValidation, HttpServletRequest request) {
+    public String kundeWeiterleiten(Model model, @Validated @Valid @ModelAttribute(KUNDE_FORM) KundeForm kundeForm, BindingResult resultOfValidation, HttpServletRequest request) {
 
         kundeForm.setKundeArtMap(KundeArt.convertKundeArtEnumToMap());
 
-        if (kundeForm.getWelcherButton().equals("buttonRechts")) {
-
-            @SuppressWarnings("unchecked")
-            List<ProduktStammdatenDTO> produktStammdatenListFromSession = (List<ProduktStammdatenDTO>) request.getSession().getAttribute(PRODUKT_STAMMDATEN_LIST);
-
-            @SuppressWarnings("unchecked")
-            List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute("produktList");
-
-            List<String> produktStammdatenGewaehlteListFromFormular = kundeForm.getProduktStammdatenGewaehlteList();
-
-            List<ProduktStammdatenDTO> produktStammdatenDTOListUpdated = buttonNachRechtsHelper.loescheAusgewaehlteProdukteAusProduktStammdatenDTOList(
-                    produktStammdatenListFromSession, produktStammdatenGewaehlteListFromFormular);
-
-            List<ProduktDTO> produktListDTOUpdated = buttonNachRechtsHelper.fuegeAusgewaehlteProdukteZuProduktDTOListHinzu(
-                    produktStammdatenListFromSession, produktStammdatenGewaehlteListFromFormular);
-
-            produktListFromSession.addAll(produktListDTOUpdated);
-
-
-            kundeForm.setProduktStammdatenList(produktStammdatenDTOListUpdated);
-            kundeForm.setProduktList(produktListFromSession);
-
-            request.getSession().setAttribute(PRODUKT_STAMMDATEN_LIST, produktStammdatenDTOListUpdated);
-            request.getSession().setAttribute(PRODUKT_LIST, produktListFromSession);
-
-            model.addAttribute(KUNDE_FORM, kundeForm);
-            return "addKunde";
-
-        } else if (kundeForm.getWelcherButton().equals("buttonLinks")) {
-
-            @SuppressWarnings("unchecked")
-            List<ProduktStammdatenDTO> produktStammdatenListFromSession =
-                    (List<ProduktStammdatenDTO>) request.getSession().getAttribute("produktStammdatenList");
-
-            @SuppressWarnings("unchecked")
-            List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute("produktList");
-
-            List<String> produktGewaehlteListFromFormular = kundeForm.getProduktGewaehlteList();
-
-            List<ProduktDTO> produktDTOListUpdated = buttonNachLinksHelper.loescheAusgewaehlteProdukteAusProduktDTOList(
-                    produktListFromSession, produktGewaehlteListFromFormular);
-
-            List<ProduktStammdatenDTO> produktStammdatenListDTOUpdated = buttonNachLinksHelper.fuegeAusgewaehlteProdukteZuProduktStammdatenDTOListHinzu(
-                    produktListFromSession, produktGewaehlteListFromFormular);
-
-            produktStammdatenListFromSession.addAll(produktStammdatenListDTOUpdated);
-
-
-            kundeForm.setProduktList(produktDTOListUpdated);
-            kundeForm.setProduktStammdatenList(produktStammdatenListFromSession);
-
-            request.getSession().setAttribute(PRODUKT_LIST, produktDTOListUpdated);
-            request.getSession().setAttribute(PRODUKT_STAMMDATEN_LIST, produktStammdatenListFromSession);
+        if (resultOfValidation.hasErrors()) {
 
             model.addAttribute(KUNDE_FORM, kundeForm);
             return "addKunde";
 
         } else {
 
-            if (resultOfValidation.hasErrors()) {
+            @SuppressWarnings("unchecked")
+            List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute("produktList");
+            kundeForm.setProduktList(produktListFromSession);
 
-                model.addAttribute(KUNDE_FORM, kundeForm);
-                return "addKunde";
-
-            } else {
-
-                String kundeArtText = KundeArt.convertKundeArtKodeToText(kundeForm.getKundeArt());
-                kundeForm.setKundeArt(kundeArtText);
-
-                @SuppressWarnings("unchecked")
-                List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute("produktList");
-                kundeForm.setProduktList(produktListFromSession);
-
-                model.addAttribute(KUNDE_FORM, kundeForm);
-                return "kundeWeiterleiten";
-            }
+            model.addAttribute(KUNDE_FORM, kundeForm);
+            return "kundeWeiterleiten";
         }
     }
 
 
+    @PostMapping("/buttonnachrechts")
+    public String bedienenButtonNachRechts(KundeForm kundeForm, HttpServletRequest request, Model model) {
+
+        kundeForm.setKundeArtMap(KundeArt.convertKundeArtEnumToMap());
+
+        @SuppressWarnings("unchecked")
+        List<ProduktStammdatenDTO> produktStammdatenListFromSession =
+                (List<ProduktStammdatenDTO>) request.getSession().getAttribute(PRODUKT_STAMMDATEN_LIST);
+
+        @SuppressWarnings("unchecked")
+        List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute(PRODUKT_LIST);
+
+        List<String> produktStammdatenGewaehlteListFromFormular = kundeForm.getProduktStammdatenGewaehlteList();
+
+        List<ProduktStammdatenDTO> produktStammdatenDTOListUpdated = buttonNachRechtsHelper.loescheAusgewaehlteProdukteAusProduktStammdatenDTOList(
+                produktStammdatenListFromSession, produktStammdatenGewaehlteListFromFormular);
+
+        List<ProduktDTO> produktListDTOUpdated = buttonNachRechtsHelper.fuegeAusgewaehlteProdukteZuProduktDTOListHinzu(
+                produktStammdatenListFromSession, produktStammdatenGewaehlteListFromFormular);
+
+        produktListFromSession.addAll(produktListDTOUpdated);
+
+
+        kundeForm.setProduktStammdatenList(produktStammdatenDTOListUpdated);
+        kundeForm.setProduktList(produktListFromSession);
+
+        request.getSession().setAttribute(PRODUKT_STAMMDATEN_LIST, produktStammdatenDTOListUpdated);
+        request.getSession().setAttribute(PRODUKT_LIST, produktListFromSession);
+
+        model.addAttribute(KUNDE_FORM, kundeForm);
+
+        if (kundeForm.getId() == null) {
+            return "addKunde";
+        } else {
+            return "editKunde";
+        }
+
+    }
+
+    @PostMapping("/buttonnachlinks")
+    public String bedienenButtonNachLinks(KundeForm kundeForm, HttpServletRequest request, Model model) {
+
+        kundeForm.setKundeArtMap(KundeArt.convertKundeArtEnumToMap());
+
+        @SuppressWarnings("unchecked")
+        List<ProduktStammdatenDTO> produktStammdatenListFromSession =
+                (List<ProduktStammdatenDTO>) request.getSession().getAttribute("produktStammdatenList");
+
+        @SuppressWarnings("unchecked")
+        List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute("produktList");
+
+        List<String> produktGewaehlteListFromFormular = kundeForm.getProduktGewaehlteList();
+
+        List<ProduktDTO> produktDTOListUpdated = buttonNachLinksHelper.loescheAusgewaehlteProdukteAusProduktDTOList(
+                produktListFromSession, produktGewaehlteListFromFormular);
+
+        List<ProduktStammdatenDTO> produktStammdatenListDTOUpdated = buttonNachLinksHelper.fuegeAusgewaehlteProdukteZuProduktStammdatenDTOListHinzu(
+                produktListFromSession, produktGewaehlteListFromFormular);
+
+        produktStammdatenListFromSession.addAll(produktStammdatenListDTOUpdated);
+
+
+        kundeForm.setProduktList(produktDTOListUpdated);
+        kundeForm.setProduktStammdatenList(produktStammdatenListFromSession);
+
+        request.getSession().setAttribute(PRODUKT_LIST, produktDTOListUpdated);
+        request.getSession().setAttribute(PRODUKT_STAMMDATEN_LIST, produktStammdatenListFromSession);
+
+        model.addAttribute(KUNDE_FORM, kundeForm);
+
+        if (kundeForm.getId() == null) {
+            return "addKunde";
+        } else {
+            return "editKunde";
+        }
+
+    }
+
+
     @PostMapping("/savekunde")
-    public String saveKunde(@ModelAttribute(KUNDE_FORM) KundeForm kundeForm, Model model, HttpServletRequest request) {
+    public String saveKunde(@ModelAttribute(KUNDE_FORM) KundeForm kundeForm, Model model, HttpServletRequest
+            request) {
 
         @SuppressWarnings("unchecked")
         List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute("produktList");
@@ -224,71 +243,13 @@ public class KundeWebController {
 
         kundeForm.setKundeArtMap(KundeArt.convertKundeArtEnumToMap());
 
-        if (kundeForm.getWelcherButton().equals("buttonRechts")) {
+        @SuppressWarnings("unchecked")
+        List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute("produktList");
+        kundeForm.setProduktList(produktListFromSession);
 
-            @SuppressWarnings("unchecked")
-            List<ProduktStammdatenDTO> produktStammdatenListFromSession =
-                    (List<ProduktStammdatenDTO>) request.getSession().getAttribute(PRODUKT_STAMMDATEN_LIST);
+        model.addAttribute(KUNDE_FORM, kundeForm);
+        return "kundeWeiterleitenEdit";
 
-            @SuppressWarnings("unchecked")
-            List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute(PRODUKT_LIST);
-
-            List<String> produktStammdatenGewaehlteListFromFormular = kundeForm.getProduktStammdatenGewaehlteList();
-
-            List<ProduktStammdatenDTO> produktStammdatenDTOListUpdated = buttonNachRechtsHelper.loescheAusgewaehlteProdukteAusProduktStammdatenDTOList(
-                    produktStammdatenListFromSession, produktStammdatenGewaehlteListFromFormular);
-
-            List<ProduktDTO> produktListDTOUpdated = buttonNachRechtsHelper.fuegeAusgewaehlteProdukteZuProduktDTOListHinzu(
-                    produktStammdatenListFromSession, produktStammdatenGewaehlteListFromFormular);
-
-            produktListFromSession.addAll(produktListDTOUpdated);
-
-
-            kundeForm.setProduktStammdatenList(produktStammdatenDTOListUpdated);
-            kundeForm.setProduktList(produktListFromSession);
-
-            request.getSession().setAttribute(PRODUKT_STAMMDATEN_LIST, produktStammdatenDTOListUpdated);
-            request.getSession().setAttribute(PRODUKT_LIST, produktListFromSession);
-
-            model.addAttribute(KUNDE_FORM, kundeForm);
-
-            return "editKunde";
-
-        } else if (kundeForm.getWelcherButton().equals("buttonLinks")) {
-
-            @SuppressWarnings("unchecked")
-            List<ProduktStammdatenDTO> produktStammdatenListFromSession = (List<ProduktStammdatenDTO>) request.getSession().getAttribute(PRODUKT_STAMMDATEN_LIST);
-
-            @SuppressWarnings("unchecked")
-            List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute(PRODUKT_LIST);
-
-            List<String> produktGewaehlteListFromFormular = kundeForm.getProduktGewaehlteList();
-
-            List<ProduktDTO> produktDTOListUpdated = buttonNachLinksHelper.loescheAusgewaehlteProdukteAusProduktDTOList(produktListFromSession, produktGewaehlteListFromFormular);
-
-            List<ProduktStammdatenDTO> produktStammdatenListDTOUpdated = buttonNachLinksHelper.fuegeAusgewaehlteProdukteZuProduktStammdatenDTOListHinzu(
-                    produktListFromSession, produktGewaehlteListFromFormular);
-
-            produktStammdatenListFromSession.addAll(produktStammdatenListDTOUpdated);
-
-
-            kundeForm.setProduktList(produktDTOListUpdated);
-            kundeForm.setProduktStammdatenList(produktStammdatenListFromSession);
-            request.getSession().setAttribute(PRODUKT_LIST, produktDTOListUpdated);
-            request.getSession().setAttribute(PRODUKT_STAMMDATEN_LIST, produktStammdatenListFromSession);
-
-            model.addAttribute(KUNDE_FORM, kundeForm);
-            return "editKunde";
-
-        } else {
-
-            @SuppressWarnings("unchecked")
-            List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute("produktList");
-            kundeForm.setProduktList(produktListFromSession);
-
-            model.addAttribute(KUNDE_FORM, kundeForm);
-            return "kundeWeiterleitenEdit";
-        }
     }
 
 
