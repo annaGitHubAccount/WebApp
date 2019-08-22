@@ -41,8 +41,8 @@
 
                 <td data-label="KundeArt">${kunde.kundeArt.text}</td>
 
-                <td data-label="Operation"><a href="/web/editkunde/${kunde.id}">Ändern</a></td>
-                <td data-label="Operation"><a href="/web/deletekunde/${kunde.id}">Löschen</a></td>
+                <td data-label="Operation"><a href="/web/editkunde/${kunde.id}">Aendern</a></td>
+                <td data-label="Operation"><a href="/web/deletekunde/${kunde.id}">Loeschen</a></td>
             </tr>
         </c:forEach>
         </tbody>

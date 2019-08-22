@@ -40,8 +40,8 @@
                     </c:if>
                 </td>
 
-                <td data-label="Operation"><a href="/web/editproduktstammdaten/${produkt.id}">Ändern</a></td>
-                <td data-label="Operation"><a href="/web/deleteproduktstammdaten/${produkt.id}">Löschen</a></td>
+                <td data-label="Operation"><a href="/web/editproduktstammdaten/${produkt.id}">Aendern</a></td>
+                <td data-label="Operation"><a href="/web/deleteproduktstammdaten/${produkt.id}">Loeschen</a></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -1,6 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<h1>Füge neuen Produktstammdaten hinzu</h1>
+<h1>Fuege neuen Produktstammdaten hinzu</h1>
 
 <style>
     .error {

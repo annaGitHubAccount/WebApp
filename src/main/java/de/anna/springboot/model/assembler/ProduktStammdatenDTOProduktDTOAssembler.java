@@ -3,6 +3,9 @@ package de.anna.springboot.model.assembler;
 import de.anna.springboot.model.dto.ProduktDTO;
 import de.anna.springboot.model.dto.ProduktStammdatenDTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class ProduktStammdatenDTOProduktDTOAssembler {
 
 
@@ -22,6 +25,18 @@ public final class ProduktStammdatenDTOProduktDTOAssembler {
 
         return produktDTO;
 
+    }
+
+    public static List<ProduktDTO> convertProduktStammdatenDTOToProduktDTO(List<ProduktStammdatenDTO> produktStammdatenDTOList){
+
+        List<ProduktDTO> produktStammdatenDTOToProduktDTOList = new ArrayList<>();
+
+        for(ProduktStammdatenDTO produktStammdatenDTO : produktStammdatenDTOList){
+            ProduktDTO produktDTO = ProduktStammdatenDTOProduktDTOAssembler.convertProduktStammdatenDTOToProduktDTO(produktStammdatenDTO);
+            produktStammdatenDTOToProduktDTOList.add(produktDTO);
+        }
+
+        return produktStammdatenDTOToProduktDTOList;
     }
 
 

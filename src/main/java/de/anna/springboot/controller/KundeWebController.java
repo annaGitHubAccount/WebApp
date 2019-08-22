@@ -3,6 +3,7 @@ package de.anna.springboot.controller;
 import de.anna.springboot.controller.helper.ButtonNachLinksHelper;
 import de.anna.springboot.controller.helper.ButtonNachRechtsHelper;
 import de.anna.springboot.model.assembler.KundeDTOKundeFormAssembler;
+import de.anna.springboot.model.assembler.ProduktStammdatenDTOProduktDTOAssembler;
 import de.anna.springboot.model.dto.KundeDTO;
 import de.anna.springboot.model.dto.ProduktDTO;
 import de.anna.springboot.model.dto.ProduktStammdatenDTO;
@@ -18,7 +19,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -72,9 +72,12 @@ public class KundeWebController {
         kundeForm.setKundeArtMap(KundeArt.convertKundeArtEnumToMap());
 
         List<ProduktStammdatenDTO> produktStammdatenDTOList = produktStammdatenService.findAll();
-        request.getSession().setAttribute(PRODUKT_STAMMDATEN_LIST, produktStammdatenDTOList);
+
+        List<ProduktDTO> produktStammdatenDTOToProduktDTOList = ProduktStammdatenDTOProduktDTOAssembler.convertProduktStammdatenDTOToProduktDTO(produktStammdatenDTOList);
+
+        request.getSession().setAttribute(PRODUKT_STAMMDATEN_LIST, produktStammdatenDTOToProduktDTOList);
         request.getSession().setAttribute(PRODUKT_LIST, new ArrayList<>());
-        kundeForm.setProduktStammdatenList(produktStammdatenDTOList);
+        kundeForm.setProduktStammdatenList(produktStammdatenDTOToProduktDTOList);
 
 
         model.addAttribute(KUNDE_FORM, kundeForm);
@@ -111,15 +114,15 @@ public class KundeWebController {
         kundeForm.setKundeArtMap(KundeArt.convertKundeArtEnumToMap());
 
         @SuppressWarnings("unchecked")
-        List<ProduktStammdatenDTO> produktStammdatenListFromSession =
-                (List<ProduktStammdatenDTO>) request.getSession().getAttribute(PRODUKT_STAMMDATEN_LIST);
+        List<ProduktDTO> produktStammdatenListFromSession =
+                (List<ProduktDTO>) request.getSession().getAttribute(PRODUKT_STAMMDATEN_LIST);
 
         @SuppressWarnings("unchecked")
         List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute(PRODUKT_LIST);
 
         List<String> produktStammdatenGewaehlteListFromFormular = kundeForm.getProduktStammdatenGewaehlteList();
 
-        List<ProduktStammdatenDTO> produktStammdatenDTOListUpdated = buttonNachRechtsHelper.loescheAusgewaehlteProdukteAusProduktStammdatenDTOList(
+        List<ProduktDTO> produktStammdatenDTOListUpdated = buttonNachRechtsHelper.loescheAusgewaehlteProdukteAusProduktStammdatenDTOList(
                 produktStammdatenListFromSession, produktStammdatenGewaehlteListFromFormular);
 
         List<ProduktDTO> produktListDTOUpdated = buttonNachRechtsHelper.fuegeAusgewaehlteProdukteZuProduktDTOListHinzu(
@@ -150,8 +153,8 @@ public class KundeWebController {
         kundeForm.setKundeArtMap(KundeArt.convertKundeArtEnumToMap());
 
         @SuppressWarnings("unchecked")
-        List<ProduktStammdatenDTO> produktStammdatenListFromSession =
-                (List<ProduktStammdatenDTO>) request.getSession().getAttribute("produktStammdatenList");
+        List<ProduktDTO> produktStammdatenListFromSession =
+                (List<ProduktDTO>) request.getSession().getAttribute("produktStammdatenList");
 
         @SuppressWarnings("unchecked")
         List<ProduktDTO> produktListFromSession = (List<ProduktDTO>) request.getSession().getAttribute("produktList");
@@ -161,7 +164,7 @@ public class KundeWebController {
         List<ProduktDTO> produktDTOListUpdated = buttonNachLinksHelper.loescheAusgewaehlteProdukteAusProduktDTOList(
                 produktListFromSession, produktGewaehlteListFromFormular);
 
-        List<ProduktStammdatenDTO> produktStammdatenListDTOUpdated = buttonNachLinksHelper.fuegeAusgewaehlteProdukteZuProduktStammdatenDTOListHinzu(
+        List<ProduktDTO> produktStammdatenListDTOUpdated = buttonNachLinksHelper.fuegeAusgewaehlteProdukteZuProduktStammdatenDTOListHinzu(
                 produktListFromSession, produktGewaehlteListFromFormular);
 
         produktStammdatenListFromSession.addAll(produktStammdatenListDTOUpdated);
@@ -221,8 +224,13 @@ public class KundeWebController {
 
         List<ProduktStammdatenDTO> produktStammdatenDTOList = produktStammdatenService.findAll();
         List<ProduktDTO> produktDTOListVonKunden = kundeDTOById.getProduktDTOList();
+
         List<String> produktDTOVonKundenAlsStringList = produktDTOVonKundenToStringList(produktDTOListVonKunden);
-        List<ProduktStammdatenDTO> produktStammdatenDTOListUpdated = buttonNachRechtsHelper.loescheAusgewaehlteProdukteAusProduktStammdatenDTOList(produktStammdatenDTOList, produktDTOVonKundenAlsStringList);
+
+        List<ProduktDTO> produktStammdatenDTOToProduktDTOList = ProduktStammdatenDTOProduktDTOAssembler.convertProduktStammdatenDTOToProduktDTO(produktStammdatenDTOList);
+
+        List<ProduktDTO> produktStammdatenDTOListUpdated = buttonNachRechtsHelper.loescheAusgewaehlteProdukteAusProduktStammdatenDTOList(
+                produktStammdatenDTOToProduktDTOList, produktDTOVonKundenAlsStringList);
 
         KundeForm kundeForm = KundeDTOKundeFormAssembler.mapKundeDTOToKundeForm(kundeDTOById);
         kundeForm.setKundeArtMap(KundeArt.convertKundeArtEnumToMap());

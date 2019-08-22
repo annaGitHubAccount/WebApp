@@ -56,7 +56,7 @@ public class KundeForm {
     private String strasseVonPostanschrift;
     private String hausNrVonPostanschrift;
 
-    private List<ProduktStammdatenDTO> produktStammdatenList = new ArrayList<>();
+    private List<ProduktDTO> produktStammdatenList = new ArrayList<>();
     private List<String> produktStammdatenGewaehlteList = new ArrayList<>();
 
     private List<ProduktDTO> produktList = new ArrayList<>();
@@ -183,11 +183,11 @@ public class KundeForm {
         this.kundeArt = kundeArt;
     }
 
-    public List<ProduktStammdatenDTO> getProduktStammdatenList() {
+    public List<ProduktDTO> getProduktStammdatenList() {
         return produktStammdatenList;
     }
 
-    public void setProduktStammdatenList(List<ProduktStammdatenDTO> produktStammdatenList) {
+    public void setProduktStammdatenList(List<ProduktDTO> produktStammdatenList) {
         this.produktStammdatenList = produktStammdatenList;
     }
 
